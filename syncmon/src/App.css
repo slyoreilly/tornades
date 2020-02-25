@@ -1,0 +1,100 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+.logo-tornades {
+  top:0;
+  left:0;
+  position: absolute;
+  height: 200px;
+  z-index: 2;
+}
+.logo-tornades-mobile {
+  top:0;
+  left:0;
+  position: absolute;
+  height: 100px;
+  z-index: 2;
+}
+
+
+.App-header {
+  height: 120px;
+  padding: 00px;
+  color: white;
+}
+
+.App-header-mobile {
+  height: 60px;
+  padding: 00px;
+  color: white;
+}
+
+.App-header-rouge {
+  margin-left:210px;
+  position: relative;
+  background-color: #e00024;
+  height: 64px;
+  padding: 00px;
+  color: white;
+}
+.App-header-rouge-mobile {
+  margin-left:105px;
+  position: relative;
+  background-color: #e00024;
+  height: 32px;
+  padding: 00px;
+  color: white;
+}
+
+.App-header-sub {
+  background-color: #f5c71a;
+  margin-left:210px;
+  position: relative;
+    height: 22px;
+  padding: 3px;
+  color: white;
+}
+
+.App-header-sub-mobile {
+  background-color: #f5c71a;
+  margin-left:105px;
+  position: relative;
+    height: 11px;
+  padding: 2px;
+  color: white;
+}
+
+
+
+
+.App-header-noir {
+  background-color: #000;
+  margin-left:210px;
+  position: relative;
+    height: 23px;
+  padding: 3px;
+  color: white;
+}
+
+.App-header-noir-mobile {
+  background-color: #000;
+  margin-left:105px;
+  position: relative;
+    height: 11px;
+  padding: 2px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
