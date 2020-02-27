@@ -18,6 +18,24 @@ import Paper from '@material-ui/core/Paper';
 
 const NavTabsWidth = 100;
 
+
+const useFetch = url => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  async function fetchData() {
+    const response = await fetch(url);
+    const json = await response.json();
+    setData(json);
+    setLoading(false)  }
+
+  useEffect(() => {
+    fetchData()
+  }, []);
+
+  return {loading,data};
+};
+
 function Pratiques() {
 
 
@@ -51,17 +69,19 @@ const divPrincipale= {
       setNavHeight(navRef? navRef.getBoundingClientRect().height : 0)
     }, [navRef]);
   */
- 
+ const {loading,data} = useFetch("https://tornades-backend.herokuapp.com/pratiques");
+
 
     return (
 <div>
+{loading ? <div>Loading...</div> :
           <Paper style={divPrincipale}>
             <h1>Pratiques</h1>-
             <Table  size="small">
               <TableHead>
                 <TableRow>
-                  <TableCell onClick={()=>{data.pratiques.sort((a,b)=>{return ((data.pratiques.id+"").localeCompare(data.pratiques.id))});}}>No</TableCell>
-                  <TableCell align="right">Niveau</TableCell>
+                  <TableCell onClick={()=>{data.sort((a,b)=>{return ((data.id+"").localeCompare(data.id))});}}>No</TableCell>
+                  <TableCell align="right">Équipes</TableCell>
                   <TableCell align="right" >Jour</TableCell>
                   <TableCell align="right">Heure</TableCell>
                 </TableRow>
@@ -69,22 +89,33 @@ const divPrincipale= {
               </TableHead>
               <TableBody>
       
-                {data.pratiques.map(pratiques => 
+                {data.map(pratiques => 
                 (
 
                   <TableRow key={pratiques.id} >
                     <TableCell component="th" scope="row">
                       {pratiques.id}
                     </TableCell>
-                    <TableCell align="right">{pratiques.jour}</TableCell>
-                    <TableCell align="right">{pratiques.niveau}</TableCell>
-                    <TableCell align="right">{pratiques.heure}</TableCell>
+                    <TableCell align="right">{pratiques.Jour}</TableCell>
+                    <TableCell align="right">
+                            {pratiques.equipes.map(equipes => 
+                        (
+
+                          <span key={equipes.id} >
+                            {equipes.Nom}, 
+                          </span>
+                      
+                            ))}
+
+                    </TableCell>
+                    <TableCell align="right">{pratiques.Debut}</TableCell>
                   </TableRow>
               
                     ))}
               </TableBody>
             </Table>
           </Paper>
+}
         </div>
       );
 

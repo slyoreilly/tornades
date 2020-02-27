@@ -19,6 +19,23 @@ import Paper from '@material-ui/core/Paper';
 
 const NavTabsWidth = 100;
 
+const useFetch = url => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  async function fetchData() {
+    const response = await fetch(url);
+    const json = await response.json();
+    setData(json);
+    setLoading(false)  }
+
+  useEffect(() => {
+    fetchData()
+  }, []);
+
+  return {loading,data};
+};
+
 function Arenas() {
 
 
@@ -68,40 +85,40 @@ function Arenas() {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
   
-
+    const {loading,data} = useFetch("https://tornades-backend.herokuapp.com/arenas");
 
     return (
       <div>
+        {loading ? <div>Loading...</div> :
                 <Paper style={divPrincipale}>
                   <h1>Arenas</h1>-
                   <Table  size="small">
                     <TableHead>
                       <TableRow>
-                        <TableCell onClick={()=>{data.arenas.sort((a,b)=>{return ((data.arenas.id+"").localeCompare(data.arenas.id))});}}>No</TableCell>
-                        <TableCell align="right">Niveau</TableCell>
-                        <TableCell align="right" >Jour</TableCell>
-                        <TableCell align="right">Heure</TableCell>
+                      <TableCell align="right">No</TableCell>
+                        <TableCell align="right">Nom</TableCell>
+                        <TableCell align="right" >Adresse</TableCell>
                       </TableRow>
       
                     </TableHead>
                     <TableBody>
             
-                      {data.arenas.map(arenas => 
+                      {data.map(arenas => 
                       (
       
                         <TableRow key={arenas.id} >
                           <TableCell component="th" scope="row">
                             {arenas.id}
                           </TableCell>
-                          <TableCell align="right">{arenas.nom}</TableCell>
-                          <TableCell align="right">{arenas.adresse}</TableCell>
-                          <TableCell align="right"><a href={arenas.emplacement}>Carte</a></TableCell>
+                          <TableCell align="right">{arenas.Nom}</TableCell>
+                          <TableCell align="right">{arenas.Adresse}</TableCell>
                         </TableRow>
                     
                           ))}
                     </TableBody>
                   </Table>
                 </Paper>
+}
               </div>
             );
       
