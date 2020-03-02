@@ -69,7 +69,7 @@ const divPrincipale= {
       setNavHeight(navRef? navRef.getBoundingClientRect().height : 0)
     }, [navRef]);
   */
- const {loading,data} = useFetch("https://tornades-backend.herokuapp.com/pratiques");
+ const {loading,data} = useFetch("https://68.66.193.234:1337/pratiques");
 
 
     return (

@@ -85,7 +85,7 @@ function Arenas() {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
   
-    const {loading,data} = useFetch("https://tornades-backend.herokuapp.com/arenas");
+    const {loading,data} = useFetch("https://68.66.193.234:1337/arenas");
 
     return (
       <div>
