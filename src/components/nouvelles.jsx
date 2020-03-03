@@ -100,15 +100,15 @@ const divPrincipale= {
                       <CardActionArea>
                         <CardMedia
                           className={classes.media}
-                          image={nouvelle.Visuel.url}
+                          image={"http://68.66.193.234:1337"+nouvelle.Visuel.url}
                           title={nouvelle.Titre}
                         />
                         <CardContent>
                           <Typography gutterBottom variant="h5" component="h2">
-                            Lizard
+                          {nouvelle.Titre}
                           </Typography>
                           <Typography variant="body2" color="textSecondary" component="p">
-                          {nouvelle.Visuel.Description}
+                          {nouvelle.Description}
                           </Typography>
                         </CardContent>
                       </CardActionArea>
