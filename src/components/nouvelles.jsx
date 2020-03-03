@@ -41,10 +41,10 @@ const useFetch = url => {
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 640,
   },
   media: {
-    height: 140,
+    height: 320,
   },
 });
 
