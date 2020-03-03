@@ -4,6 +4,7 @@ import { Route, Redirect, Switch, withRouter } from 'react-router-dom'
 //components
 import Accueil from './Accueil'
 import Pratiques from './pratiques'
+import Nouvelles from './nouvelles'
 import Informations from './Informations'
 import Arenas from './arenas'
 import Tournoi from './tournoi'
@@ -43,7 +44,13 @@ const SwitchRoutes = ({ history, ...props }) => {
                         isMobile={isMobile}
                     />}
             />
-          
+                <Route
+                path={"/nouvelles/"}
+                render={(props) =>
+                    <Nouvelles {...props}
+                        isMobile={isMobile}
+                    />}
+            />
           <Route
                 path={"/arenas/"}
                 render={(props) =>
