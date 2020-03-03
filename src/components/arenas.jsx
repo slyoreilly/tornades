@@ -85,7 +85,7 @@ function Arenas() {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
   
-    const {loading,data} = useFetch("http://localhost:1337/arenas");
+    const {loading,data} = useFetch("http://68.66.193.234:1337/arenas");
 
     return (
       <div>
