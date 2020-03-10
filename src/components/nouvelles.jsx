@@ -1,15 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import logo from '../_shared/tornades.png';
 import '../App.css';
-
 import { makeStyles } from '@material-ui/core/styles';
-import Helmet from "react-helmet";
-import NavTabs from '../_shared/NavTabs';
-import Container from '@material-ui/core/Container';
-import { Route, Switch} from 'react-router-dom';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import {data} from '../model/data';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -41,17 +32,44 @@ const useFetch = url => {
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 640,
+    width: '100%',
+    textAlign:'center',
+  },
+  rootView: {
+    maxWidth: '100%',
+    textAlign:'center',
+    display: 'flex',
+    flexDirection: 'column',
   },
   media: {
+    textAlign:'center',
     height: 320,
+    maxWidth: 480,
   },
+  cardView:{
+    textAlign:'left',
+    display: 'flex',
+    flexDirection: 'column',
+    height: 480,
+    maxWidth: 320,
+  },
+  contentList: {
+    textAlign:'center',
+    maxWidth: 480,
+  },
+  contentView:{
+    textAlign:'left',
+    display: 'flex',
+    flexDirection: 'column',
+    height: 480,
+    maxWidth: 640,
+  }
 });
 
 export default function Nouvelles() {
 
 
-
+  const [, forceUpdate] = React.useState(0);
   
     let navRef = useRef(null);
   
@@ -72,7 +90,10 @@ export default function Nouvelles() {
     }
   
 const divPrincipale= {
-  marginTop: 50
+  marginTop: 50,
+  textAlign:'center',
+  width:'100%'
+
 }
   
 
@@ -81,14 +102,20 @@ const divPrincipale= {
       setNavHeight(navRef? navRef.getBoundingClientRect().height : 0)
     }, [navRef]);
   */
- const {loading,data} = useFetch("http://68.66.193.234:1337/nouvelles");
+ let {loading,data} = useFetch("/nouvelles");
  const classes = useStyles();
+
+ function handleClick(nouvelle){
+ /* nouvelle.viewMode =nouvelle.viewMode?0:1;
+   forceUpdate(n => !n)
+  */
+ }
 
     return (
 <div>
 {loading ? <div>Loading...</div> :
           <Paper style={divPrincipale}>
-            <h1>Nouvelles</h1>-
+            <Typography variant="h2">Les Nouvelles des Tornades</Typography>
 
       
                 {data.map(nouvelle => 
@@ -96,14 +123,16 @@ const divPrincipale= {
 
    
 
-                    <Card className={classes.root}>
-                      <CardActionArea>
+                    <Card key={nouvelle.id}
+                    className={nouvelle.viewMode?classes.rootView:classes.root}>
+                      <CardActionArea style={divPrincipale}>
                         <CardMedia
-                          className={classes.media}
-                          image={"http://68.66.193.234:1337"+nouvelle.Visuel.url}
+                          className={nouvelle.viewMode?classes.cardView:classes.media}
+                          image={""+nouvelle.Visuel.url}
                           title={nouvelle.Titre}
                         />
-                        <CardContent>
+                        <CardContent
+                        className={nouvelle.viewMode?classes.contentView:classes.contentList}>
                           <Typography gutterBottom variant="h5" component="h2">
                           {nouvelle.Titre}
                           </Typography>
@@ -116,8 +145,8 @@ const divPrincipale= {
                         <Button size="small" color="primary">
                           Share
                         </Button>
-                        <Button size="small" color="primary">
-                          Learn More
+                        <Button size="small"  color="primary" onClick={()=>{handleClick(nouvelle)}}>
+                           {nouvelle.viewMode ? " --- Moins ---" : "+++ Plus +++"}
                         </Button>
                       </CardActions>
                     </Card>

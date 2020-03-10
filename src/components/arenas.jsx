@@ -1,14 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import logo from '../_shared/tornades.png';
 import '../App.css';
-import Helmet from "react-helmet";
-import Button from '@material-ui/core/Button';
-import NavTabs from '../_shared/NavTabs';
-import Container from '@material-ui/core/Container';
-import { Route, Switch} from 'react-router-dom';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import {data} from '../model/data';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -85,7 +77,7 @@ function Arenas() {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
   
-    const {loading,data} = useFetch("http://68.66.193.234:1337/arenas");
+    const {loading,data} = useFetch("/arenas");
 
     return (
       <div>

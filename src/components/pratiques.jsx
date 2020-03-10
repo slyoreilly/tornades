@@ -1,14 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import logo from '../_shared/tornades.png';
 import '../App.css';
-import Helmet from "react-helmet";
-import Button from '@material-ui/core/Button';
-import NavTabs from '../_shared/NavTabs';
-import Container from '@material-ui/core/Container';
-import { Route, Switch} from 'react-router-dom';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import {data} from '../model/data';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -74,8 +65,9 @@ const divPrincipale= {
 
     return (
 <div>
-{loading ? <div>Loading...</div> :
+
           <Paper style={divPrincipale}>
+          {loading ? <div>Loading...</div> :
             <h1>Pratiques</h1>-
             <Table  size="small">
               <TableHead>
@@ -113,9 +105,9 @@ const divPrincipale= {
               
                     ))}
               </TableBody>
-            </Table>
+            </Table>}
           </Paper>
-}
+
         </div>
       );
 

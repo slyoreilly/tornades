@@ -1,13 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import logo from '../_shared/tornades.png';
 import '../App.css';
-import Helmet from "react-helmet";
-import Button from '@material-ui/core/Button';
-import NavTabs from '../_shared/NavTabs';
-import Container from '@material-ui/core/Container';
-import { Route, Switch} from 'react-router-dom';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 
 
 
@@ -35,13 +27,7 @@ function Accueil() {
       width: isMobile ? '100%' : NavTabsWidth,
       zIndex: 1, /* Stay on top */
     }
-  
-    const theme = createMuiTheme({
-      palette: {
-        primary: { main: '#FF0000' }, // Purple and green play nicely together.
-        secondary: { main: '#66FF00' }, // This is just green.A700 as hex.
-      },
-    });
+
     const divPrincipale= {
       marginTop: 50
     }

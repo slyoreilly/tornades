@@ -9,6 +9,7 @@ import Informations from './Informations'
 import Arenas from './arenas'
 import Tournoi from './tournoi'
 import Matchs from './matchs'
+import Contact from './contact'
 //hooks
 //import useGames from '../hooks/useGames';
 //import useSummary from '../hooks/useSummary';
@@ -74,7 +75,13 @@ const SwitchRoutes = ({ history, ...props }) => {
                         isMobile={isMobile}
                     />}
             />
-          
+                    <Route
+                path={"/contact/"}
+                render={(props) =>
+                    <Contact {...props}
+                        isMobile={isMobile}
+                    />}
+            />
 
           
 
