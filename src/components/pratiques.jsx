@@ -60,7 +60,7 @@ const divPrincipale= {
       setNavHeight(navRef? navRef.getBoundingClientRect().height : 0)
     }, [navRef]);
   */
- const {loading,data} = useFetch("http://68.66.193.234:1337/pratiques");
+ const {loading,data} = useFetch("/pratiques");
 
 
     return (
