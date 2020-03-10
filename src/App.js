@@ -148,7 +148,6 @@ height:'100%',
 </div>
 
           <Container style={mainStyle}  className="conteneur">
-          aligne:center
 
           <SwitchRoutes 
             isMobile={isMobile}

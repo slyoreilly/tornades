@@ -94,7 +94,8 @@ const NavTabs = ({ history, ...props }) => {
             // variant="scrollable"
             style={styleTabs}
             centered
-            scrollButtons="on"
+            variant="scrollable"
+            scrollButtons="auto"
             indicatorColor="secondary"//{theme.palette.secondary.main}
             textColor="secondary"//{theme.palette.primary.main}
             
