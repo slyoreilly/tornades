@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import logo from '../_shared/tornades.png';
+import logo from '../shared/tornades.png';
 import '../App.css';
 import { Container } from '@material-ui/core';
 
