@@ -17,6 +17,9 @@
     "react-router-dom": "^5.1.2",
     "react-script": "^2.0.5",
     "react-scripts": "^0.9.5",
+    "typeface-dosis": "^1.1.4",
+    "typeface-indie-flower": "0.0.72",
+    "typeface-lalezar": "0.0.61",
     "typeface-roboto": "0.0.75"
   },
   "devDependencies": {},

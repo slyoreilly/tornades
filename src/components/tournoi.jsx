@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import '../App.css';
+import '../style/tournoi.css';
+import { Container } from '@material-ui/core';
+import  Paper  from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+
 
 function Tournoi() {
 
@@ -13,7 +17,23 @@ function Tournoi() {
   
   
     const divPrincipale= {
-      marginTop: 80
+      marginTop: 80,
+      paddingTop: 50,
+      margin:0,
+      backgroundImage: 'url("/fondTournoi.jpg")',
+      backgroundRepeat:"no-repeat",
+      backgroundAttachment:"fixed",
+      backgroundSize:"cover",
+      backgroundPosition:"center-top",
+      backgroundPositionX: "50%",
+      backgroundPositionY: "0%",
+      filter: 'gray',
+      animation:"zoomin 5s 1",
+      minHeight:"100vh"
+    }
+
+    const stylePaper={
+      opacity:0.6
     }
   
     useEffect(() => {
@@ -34,10 +54,9 @@ function Tournoi() {
   
 
     return (
-        <div style={divPrincipale}>
-
-	<h2>Tournoi Peewee / Bantam 2019 d'AHMV </h2>
-	
+      <Container className="conteneur">
+        	 <Paper style={stylePaper}>
+           <Typography variant="h2">Tournoi Peewee / Bantam 2019 d'AHMV</Typography>
 <p>L'édition 2019 de notre tournoi Peewee / Bantam,
 est présentement en cours du 2 au 15 décembre 2019.</p>
 
@@ -51,7 +70,9 @@ est présentement en cours du 2 au 15 décembre 2019.</p>
 
 <p>Merci,
 La direction d'AHM Villeray. </p>  
-        </div>
+</Paper>
+
+        </Container>
       );
 
     }

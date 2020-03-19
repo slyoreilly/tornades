@@ -9,6 +9,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
+import 'typeface-dosis';
 
 const NavTabsWidth = 100;
 
@@ -32,7 +34,7 @@ const useFetch = url => {
 
 const useStyles = makeStyles({
   root: {
-    width: '100%',
+
     textAlign:'center',
   },
   rootView: {
@@ -90,9 +92,7 @@ export default function Nouvelles() {
     }
   
 const divPrincipale= {
-  marginTop: 50,
-  textAlign:'center',
-  width:'100%'
+paddingTop:'1rem'
 
 }
   
@@ -111,17 +111,22 @@ const divPrincipale= {
   */
  }
 
-    return (
+    return (<Container maxWidth={false}>
 <div>
 {loading ? <div>Loading...</div> :
-          <Paper style={divPrincipale}>
+
+          <Paper 
+          elevation={2}
+          style={divPrincipale}>
             <Typography variant="h2">Les Nouvelles des Tornades</Typography>
+
+              <Container>
 
       
                 {data.map(nouvelle => 
                 (
 
-   
+                  <Container>
 
                     <Card key={nouvelle.id}
                     className={nouvelle.viewMode?classes.rootView:classes.root}>
@@ -150,13 +155,18 @@ const divPrincipale= {
                         </Button>
                       </CardActions>
                     </Card>
+                    </Container>
                   
               
                     ))}
+                                  </Container>
+
 
           </Paper>
+       
 }
         </div>
+        </Container>
       );
 
     }

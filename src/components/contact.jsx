@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import { Container } from '@material-ui/core';
 const NavTabsWidth = 100;
 
 function Contact() {
@@ -40,6 +41,8 @@ function Contact() {
   
 
     return (
+      <Container>
+
         <div style={divPrincipale}>
           <p>
   <b>Président :</b> M. P. Malkassoff </p>
@@ -71,6 +74,8 @@ Pour toute information ou pour prendre un rendez-vous, écrire un courriel avec 
                     </Card>
                   
         </div>
+        </Container>
+
       );
 
     }

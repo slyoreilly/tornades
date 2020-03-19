@@ -5,6 +5,7 @@ import Helmet from "react-helmet";
 import Button from '@material-ui/core/Button';
 import NavTabs from './_shared/NavTabs';
 import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 //import { Route, Switch} from 'react-router-dom';
 import SwitchRoutes from './components/SwitchRoutes';
 import { createMuiTheme, responsiveFontSizes ,ThemeProvider} from '@material-ui/core/styles';
@@ -33,14 +34,31 @@ const theme = createMuiTheme({
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
+      '"Indie Flower"',
+      '"Dosis"'
     ].join(','),
   },
 });
 
-
 theme.typography.h1 = {
-  fontFamily:'Roboto',
+  fontFamily:'Lalezar',
+  fontSize: '3rem',
+  
+  [theme.breakpoints.up('md')]: {
+    fontSize: '4rem',
+  },
+  [theme.breakpoints.up('lg')]: {
+    fontSize: '5rem',  },
+  alignCenter:true,
+  noWrap:true
+
+
+};
+
+theme.typography.h2 = {
+  fontFamily:'Dosis',
   fontSize: '1rem',
+  
   [theme.breakpoints.up('md')]: {
     fontSize: '1.5rem',
   },
@@ -52,7 +70,11 @@ theme.typography.h1 = {
 
 
 };
-
+theme.typography.button = {
+  fontFamily:'Indie Flower',
+  fontWeight:'900',
+  fontSize:'1.5rem'
+};
 
 
   //theme = responsiveFontSizes(theme);
@@ -96,37 +118,42 @@ function App() {
 
 
   const mainStyle = {
-    marginLeft: isMobile ? 0 : (size.width-navWidth)/2,
-    backgroundColor:"#ffffff"
+    display: 'flex',
+    flexDirection: 'row',
+   // marginLeft: isMobile ? 0 : (size.width-navWidth)/2,
+   // backgroundColor:"#ffffff"
   }
 
   const bgStyle = {
   
-    backgroundColor:"#e00024"
+    backgroundColor:"#fffafa",
+    width:'100%'
   }
 
 
-  
+
+  const navCont= {
+    width:'100%'
+  }
   const navStyle = {
-    position: isMobile ?'fixed':'relative',
-    left: 0,
-    marginTop: isMobile?'':0,
+    position: isMobile ?'fixed':'static',
+    backgroundColor: isMobile ?theme.palette.primary.main:theme.palette.primary.main,
+    textColor: isMobile ?'':'#000000',
+    paddingTop: isMobile?'':'',
     bottom: isMobile ? 0 : '',
-    height: isMobile ? "" : 0,
     width: isMobile ? '100%' :'',
-    marginLeft: 0,
-    backgroundColor:"#ffffff",
     opacity:1,
-
-    zIndex: 1, /* Stay on top */
+    zIndex:1
   }
-
 
   
 const styleTitre= {
-position:isMobile?'absolute':'absolute',
-marginLeft:isMobile?10:30,
-height:'100%',
+height:isMobile?'3rem':'0',
+width:isMobile?'100%':'0',
+visibility:isMobile?'visible':'hidden',
+backgroundColor:isMobile?'#e00024':'#000000',
+color:'#000000',
+
 }
 
 
@@ -135,29 +162,26 @@ height:'100%',
       
         <Helmet title="Tornades AHMV" />
         <ThemeProvider  theme={theme}>
-      <div className={!isMobile?'App-header':'App-header-mobile'}>
       <img className={!isMobile?'logo-tornades':'logo-tornades-mobile'} src={logo}/>
-       <div className={!isMobile?'App-header-rouge':'App-header-rouge-mobile'}> 
-       <Typography variant="h1" style={styleTitre}>Association du Hockey Mineur de Villeray</Typography>
-      </div>
-       <div className={!isMobile?'App-header-sub':'App-header-sub-mobile'}> </div>
-       <div className={!isMobile?'App-header-noir':'App-header-noir-mobile'}> </div>
-       </div>
+       
+       {/*<Typography variant="h1" style={styleTitre}>Association du Hockey Mineur de Villeray</Typography>*/}
+ 
+  <Box style={styleTitre}> <Typography variant="h2">Association de Hockey mineur de Villeray</Typography></Box>
+      
        <div style={navStyle} ref={divElement => { navRef = divElement }}>
-          <NavTabs  isMobile={isMobile} theme = {theme} />
-</div>
+            <NavTabs  isMobile={isMobile} theme = {theme} />
+          </div> 
+        
+<Box component="span" style={mainStyle}>
 
-          <Container style={mainStyle}  className="conteneur">
+            <SwitchRoutes  style={bgStyle}
+             isMobile={isMobile}
+             navHeight={navHeight}
+           >
+           </SwitchRoutes>
 
-          <SwitchRoutes 
-            isMobile={isMobile}
-            navHeight={navHeight}
-          >
-
-         
-
-          </SwitchRoutes>
-        </Container>
+</Box>
+       
         </ThemeProvider>
       </div>
     );
@@ -166,3 +190,5 @@ height:'100%',
 
 
   export default App;
+  //          <Container style={mainStyle}  className="conteneur">
+  // </Container>

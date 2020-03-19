@@ -1,12 +1,15 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import '../App.css';
+import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import 'typeface-dosis';
 const NavTabsWidth = 100;
 
 
@@ -26,6 +29,9 @@ const useFetch = url => {
 
   return {loading,data};
 };
+const useStyles = makeStyles({
+
+});
 
 function Pratiques() {
 
@@ -35,7 +41,7 @@ function Pratiques() {
     let navRef = useRef(null);
   
     const isMobile = true;// size.height > size.width;
-  
+    const classes = useStyles();
     const mainStyle = {
       marginLeft: isMobile ? 0 : NavTabsWidth,
 
@@ -46,14 +52,13 @@ function Pratiques() {
       left: 0,
       bottom: isMobile ? 0 : '',
       height: isMobile ? "" : "100%",
-      width: isMobile ? '100%' : NavTabsWidth,
+      width: isMobile ? '100%' :"",
       zIndex: 1, /* Stay on top */
     }
-  
-const divPrincipale= {
-  marginTop: 50
-}
-  
+    const divPrincipale= {
+      paddingTop:'1rem'
+      
+      }
 
   /*
     useLayoutEffect(() => {
@@ -64,11 +69,12 @@ const divPrincipale= {
 
 
     return (
-<div>
+<Container>
 
-          <Paper style={divPrincipale}>
+         
           {loading ? <div>Loading...</div> :
-            <h1>Pratiques</h1>-
+            <Paper style={divPrincipale}>
+            <Typography variant="h2">Pratiques</Typography>
             <Table  size="small">
               <TableHead>
                 <TableRow>
@@ -105,10 +111,12 @@ const divPrincipale= {
               
                     ))}
               </TableBody>
-            </Table>}
-          </Paper>
+            </Table>
+            </Paper>
+            }
+          
 
-        </div>
+        </Container>
       );
 
     }

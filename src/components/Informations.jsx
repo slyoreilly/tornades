@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import '../App.css';
 import Paper from '@material-ui/core/Paper';
-
+import { Container } from '@material-ui/core';
 
 const NavTabsWidth = 100;
 
@@ -31,11 +31,12 @@ function Informations() {
     }
 
     return (
-       
+       <Container>
 	 <Paper style={divPrincipale}>
 <ul><li>Documents Importants</li></ul>
 
 </Paper>
+</Container>
       );
 
     }

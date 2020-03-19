@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import '../App.css';
+import '../style/arenas.css';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,7 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
+import { Container } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 const NavTabsWidth = 100;
 
@@ -30,8 +31,7 @@ const useFetch = url => {
 
 function Arenas() {
 
-
-    const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+   // const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
     const [navHeight, setNavHeight] = useState(0);
   
     let navRef = useRef(null);
@@ -57,33 +57,17 @@ function Arenas() {
         secondary: { main: '#66FF00' }, // This is just green.A700 as hex.
       },
     });
-    const divPrincipale= {
-      marginTop: 50
-    }
-  
-    useEffect(() => {
-      handleWindowSizeChange();
-      window.addEventListener('resize', handleWindowSizeChange);
-      return () => {
-        window.removeEventListener('resize', handleWindowSizeChange);
-      }
-    }, []);
-  /*
-    useLayoutEffect(() => {
-      setNavHeight(navRef? navRef.getBoundingClientRect().height : 0)
-    }, [navRef]);
-  */
-    const handleWindowSizeChange = () => {
-      setSize({ width: window.innerWidth, height: window.innerHeight });
-    };
+ 
+
   
     const {loading,data} = useFetch("/arenas");
 
     return (
+      <Container className="conteneur">
       <div>
         {loading ? <div>Loading...</div> :
-                <Paper style={divPrincipale}>
-                  <h1>Arenas</h1>-
+                <Paper className="paper">
+                  <Typography variant="h2">Arenas</Typography>
                   <Table  size="small">
                     <TableHead>
                       <TableRow>
@@ -112,6 +96,7 @@ function Arenas() {
                 </Paper>
 }
               </div>
+              </Container>
             );
       
           }

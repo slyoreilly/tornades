@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import logo from '../_shared/tornades.png';
 import '../App.css';
+import { Container } from '@material-ui/core';
 
 
 
@@ -11,7 +12,7 @@ function Matchs() {
 
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
 
-  
+  //
     const isMobile = true;// size.height > size.width;
   
   
@@ -35,10 +36,12 @@ function Matchs() {
     }
 
     return (
+      <Container>
         <div style={divPrincipale}>
           <h2>Match</h2>
             <p>Allez sur le site de hockey Montreal pour voir vos matchs.</p>
         </div>
+        </Container>
       );
 
     }
