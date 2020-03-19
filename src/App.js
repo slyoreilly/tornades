@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import logo from './_shared/tornades.png';
+import logo from './shared/tornades.png';
 import './App.css';
 import Helmet from "react-helmet";
 import Button from '@material-ui/core/Button';
-import NavTabs from './_shared/NavTabs';
+import NavTabs from './shared/NavTabs';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 //import { Route, Switch} from 'react-router-dom';
