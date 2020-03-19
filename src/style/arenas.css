@@ -1,0 +1,21 @@
+
+    .conteneur {
+        margin-top: 80;
+        padding-top: 50;
+        margin:0;
+        background-image: url("/howie.jpg");
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-size:cover;
+        background-position:center-top;
+        background-position-x: "80%";
+        background-position-y: "0%";
+        filter: grayscale(80%);
+        -webkit-animation:zoomin 5s 1;
+        min-height:100vh;
+    }
+
+    .paper {
+        opacity: 0.7;
+        padding-top: 1rem;
+    }

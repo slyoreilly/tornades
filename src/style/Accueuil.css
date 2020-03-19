@@ -1,0 +1,37 @@
+
+    .conteneur-accueil {
+        margin-top: 100px;
+        padding:10rem;
+        margin:0;
+        background-image: url("http://68.66.193.234:3000/uploads/287edab0333f4ec5b63c5494ccea5148.png");
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-size:cover;
+        background-position:center-top;
+        background-position-x: 80%;
+        background-position-y: 0%;
+        -webkit-animation:zoomin 5s 1;
+        min-height:100vh;
+    }
+
+    .conteneur-accueil-mobile {
+        margin-top: 80;
+        padding-top: 50;
+        margin:0;
+        background-image: url("http://68.66.193.234:3000/uploads/287edab0333f4ec5b63c5494ccea5148.png");
+        background-repeat:no-repeat;
+        background-attachment:fixed;
+        background-size:cover;
+        background-position:center-top;
+        background-position-x: 80%;
+        background-position-y: 0%;
+        -webkit-animation: zoomin 10s 1;
+        animation: zoomin 5s 1;
+        min-height:100vh;
+    }
+
+    .paper {
+        opacity: 0.7;
+        padding: 1rem;
+    }
+    
