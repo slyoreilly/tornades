@@ -1,17 +1,28 @@
+@keyframes zoomin {
+    0% {
+        background-size:100vw 100vh;
+    }
+  
+    100% {
+        background-size:120vw 120vh;
+    }
+  }
 
     .conteneur-accueil {
         margin-top: 100px;
-        padding:10rem;
         margin:0;
+        min-height:100vh;
+        width:100%;
         background-image: url("http://68.66.193.234:3000/uploads/287edab0333f4ec5b63c5494ccea5148.png");
         background-repeat:no-repeat;
         background-attachment:fixed;
         background-size:cover;
         background-position:center-top;
-        background-position-x: 80%;
-        background-position-y: 0%;
-        -webkit-animation:zoomin 5s 1;
-        min-height:100vh;
+        animation-duration: 20s;
+        animation-name: zoomin;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+
     }
 
     .conteneur-accueil-mobile {
@@ -34,4 +45,9 @@
         opacity: 0.7;
         padding: 1rem;
     }
-    
+    .paperFull {
+        position: absolute;
+        bottom:0;
+        opacity: 1;
+        padding: 1rem;
+    }

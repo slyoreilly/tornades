@@ -98,7 +98,7 @@ const NavTabs = ({ history, ...props }) => {
             textColor="secondary"//{theme.palette.primary.main}
             
         >
-            <Tab  label={"Accueuil"} component={Link} to={ "/"} style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
+            <Tab  label={"Accueil"} component={Link} to={ "/"} style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
             <Tab  label="Nouvelles" component={Link} to={ "/nouvelles/"}  style={{ fontSize: '1.3rem' }}  className={isMobile ? "mobileTab" : "tab"} />
             <Tab label="Pratiques" component={Link} to={"/pratiques/"}  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
             <Tab label="Matchs" component={Link} to="/matchs/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />

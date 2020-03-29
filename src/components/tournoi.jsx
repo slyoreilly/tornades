@@ -9,31 +9,16 @@ function Tournoi() {
 
 
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
-    //const [navHeight, setNavHeight] = useState(0);
+    const [navHeight, setNavHeight] = useState(0);
   
     //let navRef = useRef(null);
   
-    const isMobile = true;// size.height > size.width;
-  
-  
-    const divPrincipale= {
-      marginTop: 80,
-      paddingTop: 50,
-      margin:0,
-      backgroundImage: 'url("/fondTournoi.jpg")',
-      backgroundRepeat:"no-repeat",
-      backgroundAttachment:"fixed",
-      backgroundSize:"cover",
-      backgroundPosition:"center-top",
-      backgroundPositionX: "50%",
-      backgroundPositionY: "0%",
-      filter: 'gray',
-      animation:"zoomin 5s 1",
-      minHeight:"100vh"
-    }
+    const isMobile =  size.height > size.width;
+ 
 
     const stylePaper={
-      opacity:0.6
+      opacity:0.8,
+      marginTop:'5rem'
     }
   
     useEffect(() => {
@@ -54,7 +39,7 @@ function Tournoi() {
   
 
     return (
-      <Container className="conteneur">
+      <Container className="conteneur-tournoi" maxWidth={false}>
         	 <Paper style={stylePaper}>
            <Typography variant="h2">Tournoi Peewee / Bantam 2019 d'AHMV</Typography>
 <p>L'édition 2019 de notre tournoi Peewee / Bantam,

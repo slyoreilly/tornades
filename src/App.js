@@ -118,6 +118,7 @@ function App() {
 
 
   const mainStyle = {
+    width:'100vw',
     display: 'flex',
     flexDirection: 'row',
    // marginLeft: isMobile ? 0 : (size.width-navWidth)/2,
@@ -127,7 +128,7 @@ function App() {
   const bgStyle = {
   
     backgroundColor:"#fffafa",
-    width:'100%'
+    width:'100vw'
   }
 
 

@@ -2,10 +2,33 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import logo from '../shared/tornades.png';
 import '../App.css';
 import { Container } from '@material-ui/core';
-
-
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 const NavTabsWidth = 100;
+
+const useFetch = url => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+    async function fetchData() {
+      const response = await fetch("/equipes");
+      const json = await response.json();
+      setData(json);
+      setLoading(false);  
+    }
+
+  useEffect(() => {
+    fetchData()
+  }, []);
+
+  return {loading,data};
+};
 
 function Matchs() {
 
@@ -34,14 +57,47 @@ function Matchs() {
     const divPrincipale= {
       marginTop:80
     }
-
+    const {loading,data} = useFetch();
+    //const {equipes} = useFetchEquipes("/equipes");
+    const selectRef = useRef(0);
+    const [selEquipe, setSelEquipe] = useState(0);
     return (
-      <Container>
-        <div style={divPrincipale}>
-          <h2>Match</h2>
-            <p>Allez sur le site de hockey Montreal pour voir vos matchs.</p>
-        </div>
-        </Container>
+<Container>
+        
+        {loading||loading? <div>Loading...</div> :
+          <Paper style={divPrincipale}>
+         
+          <Typography variant="h2">Matchs</Typography>
+
+          <Table  size="small">
+            <TableHead>
+              <TableRow>
+                <TableCell >No</TableCell>
+                <TableCell align="right">Équipes</TableCell>
+
+              </TableRow>
+
+            </TableHead>
+            <TableBody>
+           
+             {  data.map(equipe => 
+              (
+
+                <TableRow key={equipe.id} >
+                  <TableCell component="th" scope="row">
+                    {equipe.id}
+                  </TableCell>
+                  <TableCell   onChange={()=>{fetch(equipe.pageMatchHM)}} align="right"><a href={equipe.pageMatchHM} target="_blank">{equipe.Nom}</a></TableCell>
+                </TableRow>
+            
+                  ))}
+            </TableBody>
+          </Table>
+          </Paper>
+          }
+        
+
+      </Container>
       );
 
     }

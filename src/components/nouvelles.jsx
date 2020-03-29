@@ -34,74 +34,58 @@ const useFetch = url => {
 
 const useStyles = makeStyles({
   root: {
-
+    maxWidth: '100%',
     textAlign:'center',
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop:'1rem',
+    justifyContent: 'flex-start'
   },
-  rootView: {
+  rootMobile: {
     maxWidth: '100%',
     textAlign:'center',
     display: 'flex',
     flexDirection: 'column',
+    marginTop:'1rem',
+    justifyContent: 'flex-start'
   },
+
   media: {
+    height:320,
+    maxWidth:480,
+    textAlign:'center',
+    flex: '1 0 auto',
+  },
+  mediaMobile: {
     textAlign:'center',
     height: 320,
-    maxWidth: 480,
+    width: '100%' ,
+    zIndex: 1, /* Stay on top */
+    flex:"1 0 auto",
   },
   cardView:{
     textAlign:'left',
-    display: 'flex',
-    flexDirection: 'column',
-    height: 480,
-    maxWidth: 320,
+    flex:"1 0 auto",
   },
   contentList: {
-    textAlign:'center',
-    maxWidth: 480,
+    flex: '1',
   },
-  contentView:{
-    textAlign:'left',
-    display: 'flex',
-    flexDirection: 'column',
-    height: 480,
-    maxWidth: 640,
-  }
 });
 
 export default function Nouvelles() {
 
+  const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+  const [navHeight, setNavHeight] = useState(0);
 
   const [, forceUpdate] = React.useState(0);
+    const isMobile =  size.height > size.width;
   
-    let navRef = useRef(null);
-  
-    const isMobile = true;// size.height > size.width;
-  
-    const mainStyle = {
-      marginLeft: isMobile ? 0 : NavTabsWidth,
-
-      width: isMobile ? '100%' : window.innerWidth - NavTabsWidth,
-    }
-    const navStyle = {
-      position: 'fixed',
-      left: 0,
-      bottom: isMobile ? 0 : '',
-      height: isMobile ? "" : "100%",
-      width: isMobile ? '100%' : NavTabsWidth,
-      zIndex: 1, /* Stay on top */
-    }
-  
+ 
 const divPrincipale= {
 paddingTop:'1rem'
 
 }
-  
 
-  /*
-    useLayoutEffect(() => {
-      setNavHeight(navRef? navRef.getBoundingClientRect().height : 0)
-    }, [navRef]);
-  */
  let {loading,data} = useFetch("/nouvelles");
  const classes = useStyles();
 
@@ -121,23 +105,22 @@ paddingTop:'1rem'
             <Typography variant="h2">Les Nouvelles des Tornades</Typography>
 
               <Container>
-
+                
       
                 {data.map(nouvelle => 
                 (
 
-                  <Container>
-
-                    <Card key={nouvelle.id}
-                    className={nouvelle.viewMode?classes.rootView:classes.root}>
-                      <CardActionArea style={divPrincipale}>
+                 
+                    <Card key={nouvelle.id}>
+                    
+                      <CardActionArea className={isMobile?classes.rootMobile:classes.root}>
                         <CardMedia
-                          className={nouvelle.viewMode?classes.cardView:classes.media}
+                          className={isMobile?classes.mediaMobile:classes.media}
                           image={""+nouvelle.Visuel.url}
                           title={nouvelle.Titre}
                         />
                         <CardContent
-                        className={nouvelle.viewMode?classes.contentView:classes.contentList}>
+                        className={isMobile?classes.cardView:classes.contentList} >
                           <Typography gutterBottom variant="h5" component="h2">
                           {nouvelle.Titre}
                           </Typography>
@@ -155,7 +138,7 @@ paddingTop:'1rem'
                         </Button>
                       </CardActions>
                     </Card>
-                    </Container>
+              
                   
               
                     ))}

@@ -15,79 +15,79 @@ const NavTabsWidth = 100;
 
 const useFetch = url => {
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-
+  const [loadingP, setLoadingP] = useState(true);
+  const [loadingE, setLoadingE] = useState(true);
+  const [equipes, setEquipes] = useState(null);
   async function fetchData() {
-    const response = await fetch(url);
+    const response = await fetch("/pratiques");
     const json = await response.json();
     setData(json);
-    setLoading(false)  }
+    setLoadingP(false);  
+  }
+    async function fetchDataEquipes() {
+      const response = await fetch("/equipes");
+      const json = await response.json();
+      setEquipes(json);
+      setLoadingE(false);  
+    }
 
   useEffect(() => {
     fetchData()
+    fetchDataEquipes()
   }, []);
 
-  return {loading,data};
+  return {loadingP,loadingE,data,equipes};
 };
 const useStyles = makeStyles({
 
 });
 
+
 function Pratiques() {
-
-
-
-  
-    let navRef = useRef(null);
-  
-    const isMobile = true;// size.height > size.width;
-    const classes = useStyles();
-    const mainStyle = {
-      marginLeft: isMobile ? 0 : NavTabsWidth,
-
-      width: isMobile ? '100%' : window.innerWidth - NavTabsWidth,
-    }
-    const navStyle = {
-      position: 'fixed',
-      left: 0,
-      bottom: isMobile ? 0 : '',
-      height: isMobile ? "" : "100%",
-      width: isMobile ? '100%' :"",
-      zIndex: 1, /* Stay on top */
-    }
+    
     const divPrincipale= {
       paddingTop:'1rem'
       
       }
 
-  /*
-    useLayoutEffect(() => {
-      setNavHeight(navRef? navRef.getBoundingClientRect().height : 0)
-    }, [navRef]);
-  */
- const {loading,data} = useFetch("/pratiques");
+ const {loadingP,loadingE,data,equipes} = useFetch();
+ //const {equipes} = useFetchEquipes("/equipes");
+ const selectRef = useRef(0);
+ const [selEquipe, setSelEquipe] = useState(0);
 
 
     return (
 <Container>
-
-         
-          {loading ? <div>Loading...</div> :
+        
+          {loadingP||loadingE? <div>Loading...</div> :
             <Paper style={divPrincipale}>
+           
             <Typography variant="h2">Pratiques</Typography>
+            <span>Choisir votre équipe:</span>
+                <select ref={selectRef} selected onChange={()=>{setSelEquipe(selectRef.current.value);console.log(selectRef.current.value)}} >
+                <option key={0} value={0}>Toutes</option>
+                {equipes.map(equipe => 
+                (
+                <option key={equipe.id} value={equipe.id}>{equipe.Nom}</option>
+
+                ))}
+                </select>
+
             <Table  size="small">
               <TableHead>
                 <TableRow>
                   <TableCell onClick={()=>{data.sort((a,b)=>{return ((data.id+"").localeCompare(data.id))});}}>No</TableCell>
-                  <TableCell align="right">Équipes</TableCell>
                   <TableCell align="right" >Jour</TableCell>
+                  <TableCell align="right">Équipes</TableCell>
                   <TableCell align="right">Heure</TableCell>
                 </TableRow>
 
               </TableHead>
               <TableBody>
-      
-                {data.map(pratiques => 
+             
+               {  data.filter(
+                pratiques =>(Object.keys(pratiques.equipes).filter(
+                key=>(pratiques.equipes[key].id==selEquipe||selEquipe==0)).length>0)).map(pratiques => 
                 (
 
                   <TableRow key={pratiques.id} >
@@ -96,11 +96,11 @@ function Pratiques() {
                     </TableCell>
                     <TableCell align="right">{pratiques.Jour}</TableCell>
                     <TableCell align="right">
-                            {pratiques.equipes.map(equipes => 
+                            {Object.keys(pratiques.equipes).map(cleEq => 
                         (
 
-                          <span key={equipes.id} >
-                            {equipes.Nom}, 
+                          <span key={pratiques.equipes[cleEq].id} >
+                            {pratiques.equipes[cleEq].Nom} <br></br>
                           </span>
                       
                             ))}
