@@ -8,6 +8,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Container } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import Icon from '@material-ui/core/Icon';
+import LocationIcon from '@material-ui/icons/LocationOn';
 
 const useFetch = url => {
   const [data, setData] = useState(null);
@@ -45,10 +47,9 @@ function Arenas() {
                   <Table  size="small">
                     <TableHead>
                       <TableRow>
+                      <TableCell align="center" ></TableCell>
                         <TableCell align="center">Nom</TableCell>
-                        <TableCell align="center" >Adresse</TableCell>
-                        <TableCell align="center" >No Téléphone</TableCell>
-                        <TableCell align="center" >Emplacement</TableCell>
+                        <TableCell align="center" >Coordonnées</TableCell>
                       </TableRow>
       
                     </TableHead>
@@ -58,10 +59,9 @@ function Arenas() {
                       (
       
                         <TableRow key={arenas.id} >
+                          <TableCell align="center"><a href={arenas.lienGoogle}><LocationIcon></LocationIcon></a></TableCell>
                           <TableCell align="center">{arenas.Nom}</TableCell>
-                          <TableCell align="center">{arenas.Adresse}</TableCell>
-                          <TableCell align="center">{arenas.telephone}</TableCell>
-                          <TableCell align="center"><a href={arenas.lienGoogle}>Trouver</a></TableCell>
+                          <TableCell align="center">{arenas.Adresse}<br/>{arenas.telephone}</TableCell>
                         </TableRow>
                     
                           ))}
