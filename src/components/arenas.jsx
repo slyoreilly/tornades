@@ -45,9 +45,10 @@ function Arenas() {
                   <Table  size="small">
                     <TableHead>
                       <TableRow>
-                      <TableCell align="right">No</TableCell>
-                        <TableCell align="right">Nom</TableCell>
-                        <TableCell align="right" >Adresse</TableCell>
+                        <TableCell align="center">Nom</TableCell>
+                        <TableCell align="center" >Adresse</TableCell>
+                        <TableCell align="center" >No Téléphone</TableCell>
+                        <TableCell align="center" >Emplacement</TableCell>
                       </TableRow>
       
                     </TableHead>
@@ -57,11 +58,10 @@ function Arenas() {
                       (
       
                         <TableRow key={arenas.id} >
-                          <TableCell component="th" scope="row">
-                            {arenas.id}
-                          </TableCell>
-                          <TableCell align="right">{arenas.Nom}</TableCell>
-                          <TableCell align="right">{arenas.Adresse}</TableCell>
+                          <TableCell align="center">{arenas.Nom}</TableCell>
+                          <TableCell align="center">{arenas.Adresse}</TableCell>
+                          <TableCell align="center">{arenas.telephone}</TableCell>
+                          <TableCell align="center"><a href={arenas.lienGoogle}>Trouver</a></TableCell>
                         </TableRow>
                     
                           ))}
