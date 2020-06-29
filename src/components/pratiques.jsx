@@ -55,7 +55,14 @@ function Pratiques() {
  const selectRef = useRef(0);
  const [selEquipe, setSelEquipe] = useState(0);
 
+ const options = {
+  timeZone:"America/Toronto",
+  hour12 : false,
+  hour:  "2-digit",
+  minute: "2-digit"
+}
 
+new Date().toLocaleTimeString("en-US",options);
     return (
 <Container>
         
@@ -106,7 +113,7 @@ function Pratiques() {
                             ))}
 
                     </TableCell>
-                    <TableCell align="right">{pratiques.Debut}</TableCell>
+                    <TableCell align="right">{pratiques.Debut.split(':')[0]+":"+pratiques.Debut.split(':')[1]}</TableCell>
                   </TableRow>
               
                     ))}

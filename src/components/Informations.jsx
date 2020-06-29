@@ -63,9 +63,7 @@ function Informations() {
     <TableHead>
       <TableRow>
         <TableCell onClick={()=>{data.sort((a,b)=>{return ((data.id+"").localeCompare(data.id))});}}>No</TableCell>
-        <TableCell align="right" >Jour</TableCell>
-        <TableCell align="right">Équipes</TableCell>
-        <TableCell align="right">Heure</TableCell>
+        <TableCell align="center" >fichier</TableCell>
       </TableRow>
 
     </TableHead>
@@ -78,7 +76,7 @@ function Informations() {
           <TableCell component="th" scope="row">
             {fichiers.id}
           </TableCell>
-          <TableCell onClick={()=>{fetch(fichiers.fic.url)}} align="right"><a href={fichiers.fic.url} target="_blank">{fichiers.Titre}</a></TableCell>
+          <TableCell onClick={()=>{fetch(fichiers.fic.url)}} align="center"><a href={fichiers.fic.url} target="_blank">{fichiers.Titre}</a></TableCell>
         </TableRow>
     
           ))}

@@ -36,8 +36,8 @@
         background-position:center-top;
         background-position-x: 80%;
         background-position-y: 0%;
-        -webkit-animation: zoomin 10s 1;
-        animation: zoomin 5s 1;
+       /* -webkit-animation: zoomin 10s 1;
+        animation: zoomin 5s 1;*/
         min-height:100vh;
     }
 

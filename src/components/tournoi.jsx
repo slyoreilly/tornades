@@ -43,13 +43,12 @@ function Tournoi() {
         	 <Paper style={stylePaper}>
            <Typography variant="h2">Tournoi Peewee / Bantam 2019 d'AHMV</Typography>
 <p>L'édition 2019 de notre tournoi Peewee / Bantam,
-est présentement en cours du 2 au 15 décembre 2019.</p>
+s'est déroulé du 2 au 15 décembre 2019.</p>
 
-<p>Pour consulter l'horaire et les résultats utiliser le lien "Horaire / Résultats 2019".</p>
 
-<h4>Nous avons une nouveauté cette année, tous les matchs sont filmés !</h4>
+<h4>Nous avons eu une belle nouveauté cette année, tous les matchs ont été filmés!</h4>
 
-<p>Pour voir les faits saillants de vos cliquer sur le lien ci-dessous.</p>
+<p>Pour voir les faits saillants de vos cliquer sur <a href="http://syncstats.live/calendar/928">ce lien</a></p>
 
 <p>Pour plus d'informations, veuillez entrer en communication avec nous.</p>
 

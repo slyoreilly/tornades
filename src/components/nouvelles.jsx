@@ -60,7 +60,6 @@ const useStyles = makeStyles({
     textAlign:'center',
     height: 320,
     width: '100%' ,
-    zIndex: 1, /* Stay on top */
     flex:"1 0 auto",
   },
   cardView:{
