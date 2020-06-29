@@ -39,7 +39,7 @@ function Tournoi() {
   
 
     return (
-      <Container className="conteneur-tournoi" maxWidth={false}>
+      <Container className={isMobile?"conteneur-tournoi-mobile":"conteneur-tournoi"}>
         	 <Paper style={stylePaper}>
            <Typography variant="h2">Tournoi Peewee / Bantam 2019 d'AHMV</Typography>
 <p>L'édition 2019 de notre tournoi Peewee / Bantam,

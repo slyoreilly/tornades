@@ -38,7 +38,7 @@ function Arenas() {
     const {loading,data} = useFetch("/arenas");
 
     return (
-      <Container className="conteneur-arena" maxWidth={false}>
+      <Container className={isMobile?"conteneur-arena-mobile":"conteneur-arena"}>
         {loading ? <div>Loading...</div> :
                 <Paper className="paper">
                   <Typography variant="h2">Arenas</Typography>
