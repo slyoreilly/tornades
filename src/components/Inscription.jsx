@@ -1,5 +1,4 @@
 import React, { useState, useEffect,useLayoutEffect } from 'react';
-import { useForm } from "react-hook-form/dist/index.ie11";
 import { makeStyles } from '@material-ui/core/styles';
 
 import '../App.css';
@@ -13,6 +12,9 @@ import Grid from '@material-ui/core/Grid';
 import Modal from '@material-ui/core/Modal';
 import { useTheme } from '@material-ui/core/styles';
 import { withTheme } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 function getModalStyle() {
   const top = 50;
@@ -93,7 +95,6 @@ function Inscription(props) {
 
 
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
-    const { register, handleSubmit, errors } = useForm();
     const theme = useTheme(props.theme);
     useEffect(() => {
     }, []);
@@ -243,7 +244,7 @@ const resetForm =()=>{
 <Typography variant="h2">Formulaire d'inscription</Typography>
 <Container maxWidth={false} > 
 
-<form id="maForme" onSubmit={handleSubmit(onSubmitForm)} style={divPrincipale}>
+<form id="maForme" } style={divPrincipale}>
 <Grid  container spacing={8}>
 <Grid container item xs={12} md={6}  spacing={2}>
     <Grid item xs={12} >
@@ -339,17 +340,35 @@ const resetForm =()=>{
         aria-describedby="simple-modal-description"
       >
     <div style={modalStyle} className={classes.paper}>
+    {erreurs.length ==0?
+    <div>
             <h2 id="simple-modal-title">Confirmation de l'inscription</h2>
             <p id="simple-modal-description">
               Merci beaucoup pour votre confiance. Après avoir confirmé votre inscription en cliquant sur le bouton ci-dessous, il vous restera à nous faire parvenir votre paiement soit par Interac en ligne au ahmvtornades@hotmail.com, ou en personne à l'arena Howie-Morenz. Finalement, lors de votre passage, vous devrez signer votre consentement à l'activité de votre enfant.
             </p>
-            {erreurs.map(erreur => 
+            </div>
+:
+<div>
+            <h2 id="simple-modal-title">Un petit instant...</h2>
+            <p id="simple-modal-description">
+              Nous avons décelé au moins une erreur dans votre formulaire. Veuillez en prendre connaissance et corriger avant de soumettre.
+            </p>
+            <List dense>
+              {erreurs.map(erreur => 
                 (
-                  <p style={{color: theme.palette.error}}>{listeErreurs[erreur]}</p>
+                <ListItem>
+                  <ListItemText
+                    primary={listeErreurs[erreur]}
+                  />
+                </ListItem>
                 ))}
+            </List>
+
+                
+    </div>}
 
             <input type="button"  className={classes.btnSuccess} disabled={erreurs.length} value="Confirmer" onClick={()=>{onSubmitForm();handleClose();}}/>
-            <input type="button"  className={classes.btnSuccess} value="Annuler" onClick={()=>{handleClose();}}/>
+            <input type="button"  className={classes.btnSuccess} value={erreurs.length==0?"Annuler":"Corriger"} onClick={()=>{handleClose();}}/>
             <input type="reset"  className={classes.btnSuccess} value="Recommencer" onClick={()=>{resetForm();handleClose();}}/>
           </div>
       </Modal>
