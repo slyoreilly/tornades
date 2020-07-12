@@ -244,7 +244,7 @@ const resetForm =()=>{
 <Typography variant="h2">Formulaire d'inscription</Typography>
 <Container maxWidth={false} > 
 
-<form id="maForme" } style={divPrincipale}>
+<form id="maForme" style={divPrincipale}>
 <Grid  container spacing={8}>
 <Grid container item xs={12} md={6}  spacing={2}>
     <Grid item xs={12} >
