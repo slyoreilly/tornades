@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+//import { useForm } from "react-hook-form";
 import logo from './shared/tornades.png';
 import './App.css';
 import Helmet from "react-helmet";
-import Button from '@material-ui/core/Button';
 import NavTabs from './shared/NavTabs';
-import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 //import { Route, Switch} from 'react-router-dom';
 import SwitchRoutes from './components/SwitchRoutes';
@@ -21,6 +20,8 @@ const theme = createMuiTheme({
     primary: { main:  '#e00024'}, 
     secondary: { main: '#f5c71a' }, 
     tertiary: { main: '#000000' }, 
+    error: { main: '#ff0000'},
+    success: { main: '#00ff00'},
   },
   typography: {
     fontFamily: [
@@ -133,9 +134,7 @@ function App() {
 
 
 
-  const navCont= {
-    width:'100%'
-  }
+
   const navStyle = {
     position: isMobile ?'fixed':'static',
     backgroundColor: isMobile ?theme.palette.primary.main:theme.palette.primary.main,
@@ -170,7 +169,7 @@ color:'#000000',
   <Box style={styleTitre}> <Typography variant="h2">Association de Hockey mineur de Villeray</Typography></Box>
       
        <div style={navStyle} ref={divElement => { navRef = divElement }}>
-            <NavTabs  isMobile={isMobile} theme = {theme} />
+            <NavTabs  isMobile={isMobile} theme={theme} />
           </div> 
         
 <Box component="span" style={mainStyle}>

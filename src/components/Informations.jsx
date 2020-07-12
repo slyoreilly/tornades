@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import '../App.css';
+import Inscription from './Inscription';
 import Paper from '@material-ui/core/Paper';
 import { Container } from '@material-ui/core';
 import Table from '@material-ui/core/Table';
@@ -57,7 +58,9 @@ function Informations() {
 
          
 {loading ? <div>Loading...</div> :
+  
   <Paper style={divPrincipale}>
+    <Inscription></Inscription>
   <Typography variant="h2">Fichiers Importants</Typography>
   <Table  size="small">
     <TableHead>
