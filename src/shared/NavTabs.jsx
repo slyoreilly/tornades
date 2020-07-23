@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { withRouter } from 'react-router-dom';
 import '../style/NavTabs.css';
 import { Link } from "react-router-dom";
@@ -13,6 +13,8 @@ import { withTheme } from '@material-ui/core/styles';
 import 'typeface-indie-flower';
 //import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
 import Typography from '@material-ui/core/Typography';
+import { useTranslation } from 'react-i18next';
+import Cookies from 'universal-cookie';
 
 
     //const styleTabs={
@@ -27,10 +29,14 @@ const NavTabs = ({ history, ...props }) => {
     const { isMobile } = props;
     //const classes = useStyles(props.theme);
     const [value, setValue] = React.useState(0);
+    const [langue, setLangue] = React.useState('en');
+    const { t, i18n } = useTranslation('NavTabs');
 
     const theme = useTheme(props.theme);
     useEffect(() => {
         SetTabsValue();
+        const cookies = new Cookies();
+        cookies.set('langue', langue, { path: '/' });
     }, []);
 
     useEffect(() => history.listen(() => {
@@ -81,8 +87,10 @@ const NavTabs = ({ history, ...props }) => {
 
     return (
         /*<ThemeProvider theme={theme}>*/
+        <Suspense fallback={<div>Loading</div>}>
         <div>
              <Typography variant="button" >
+
         <Tabs
             className={isMobile ? "": ""}
             orientation={isMobile ? "horizontal" : "horizontal"}
@@ -98,17 +106,19 @@ const NavTabs = ({ history, ...props }) => {
             textColor="secondary"//{theme.palette.primary.main}
             
         >
-            <Tab  label={"Accueil"} component={Link} to={ "/"} style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
-            <Tab  label="Nouvelles" component={Link} to={ "/nouvelles/"}  style={{ fontSize: '1.3rem' }}  className={isMobile ? "mobileTab" : "tab"} />
-            <Tab label="Pratiques" component={Link} to={"/pratiques/"}  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
-            <Tab label="Matchs" component={Link} to="/matchs/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
-            <Tab label="Tournoi" component={Link} to="/tournoi/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
-            <Tab label="Arénas" component={Link} to="/arenas/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
-            <Tab label="Informations" component={Link} to="/informations/" style={{ fontSize: '1.3rem' }}  className={isMobile ? "mobileTab" : "tab"}/>
-            <Tab label="Contact" component={Link} to="/contact/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
+            <Tab  label={t('Accueil')} component={Link} to={ "/"} style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
+            <Tab  label={t('Nouvelles')} component={Link} to={ "/nouvelles/"}  style={{ fontSize: '1.3rem' }}  className={isMobile ? "mobileTab" : "tab"} />
+            <Tab label={t('Pratiques')} component={Link} to={"/pratiques/"}  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
+            <Tab label={t('Matchs')} component={Link} to="/matchs/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
+            <Tab label={t('Tournoi')} component={Link} to="/tournoi/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
+            <Tab label={t('Arenas')} component={Link} to="/arenas/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
+            <Tab label={t('Inscription')} component={Link} to="/inscription/" style={{ fontSize: '1.3rem' }}  className={isMobile ? "mobileTab" : "tab"}/>
+            <Tab label={t('Contact')} component={Link} to="/contact/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
         </Tabs>
+       
         </Typography>
         </div>
+        </Suspense>
     );
 }
 

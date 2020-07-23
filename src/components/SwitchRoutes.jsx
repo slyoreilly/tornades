@@ -6,6 +6,7 @@ import Accueil from './Accueil'
 import Pratiques from './pratiques'
 import Nouvelles from './nouvelles'
 import Informations from './Informations'
+import Inscription from './Inscription'
 import Arenas from './arenas'
 import Tournoi from './tournoi'
 import Matchs from './matchs'
@@ -32,9 +33,9 @@ const SwitchRoutes = ({ history, ...props }) => {
             />
 
         <Route
-                path={"/informations/"}
+                path={"/inscription/"}
                 render={(props) =>
-                    <Informations {...props}
+                    <Inscription {...props}
                         isMobile={isMobile}
                     />}
             />

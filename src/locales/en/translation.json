@@ -1,0 +1,13 @@
+{
+    "NavTabs":{
+        "Accueil":"Home",
+        "Matchs":"Games",
+        "Pratiques":"Practices",
+        "Nouvelles":"News",
+        "Tournoi":"Tournament",
+        "Arenas":"Arenas",
+        "Inscriptions":"Inscriptions",
+        "Contact":"Join Us"
+        
+    }
+}

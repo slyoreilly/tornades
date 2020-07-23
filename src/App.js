@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useRef, useLayoutEffect, Suspense } from 'react';
 //import { useForm } from "react-hook-form";
 import logo from './shared/tornades.png';
 import './App.css';
@@ -10,6 +10,7 @@ import SwitchRoutes from './components/SwitchRoutes';
 import { createMuiTheme, responsiveFontSizes ,ThemeProvider} from '@material-ui/core/styles';
 import 'typeface-roboto';
 import Typography from '@material-ui/core/Typography';
+import Cookies from 'universal-cookie';
 
 //import red from '@material-ui/core/colors/red';
 //import yellow from '@material-ui/core/colors/yellow';
@@ -167,10 +168,12 @@ color:'#000000',
        {/*<Typography variant="h1" style={styleTitre}>Association du Hockey Mineur de Villeray</Typography>*/}
  
   <Box style={styleTitre}> <Typography variant="h2">Association de Hockey mineur de Villeray</Typography></Box>
-      
+
        <div style={navStyle} ref={divElement => { navRef = divElement }}>
-            <NavTabs  isMobile={isMobile} theme={theme} />
+         
+            <NavTabs   isMobile={isMobile} theme={theme} />
           </div> 
+
         
 <Box component="span" style={mainStyle}>
 

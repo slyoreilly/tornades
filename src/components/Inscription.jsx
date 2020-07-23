@@ -15,6 +15,8 @@ import { withTheme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import { useTranslation } from 'react-i18next';
+import Cookies from 'universal-cookie';
 
 function getModalStyle() {
   const top = 50;
@@ -68,18 +70,7 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
     },
-    media: {
-      height:320,
-      maxWidth:480,
-      textAlign:'center',
-      flex: '1 0 auto',
-    },
-    mediaMobile: {
-      textAlign:'center',
-      height: 320,
-      width: '100%' ,
-      flex:"1 0 auto",
-    },
+
     btnSuccess:{
       backgroundColor: theme.palette.success,
     },
@@ -96,6 +87,7 @@ function Inscription(props) {
 
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
     const theme = useTheme(props.theme);
+    const { t, i18n } = useTranslation('Inscription');
     useEffect(() => {
     }, []);
 
@@ -124,6 +116,8 @@ function Inscription(props) {
     const [DerniereEquipe, setDerniereEquipe] = useInput('')
     const [AnneeDerniereEquipe, setAnneeDerniereEquipe] = useInput('')
     const [Cellulaire, setCellulaire] = useInput('')
+    const [estConfirme, setEstConfirme] = React.useState(false);
+    const [estErreurConfirme, setEstErreurConfirme] = React.useState(false);
     const [erreurs, setErreurs] = React.useState([])
 
   const handleOpen = () => {
@@ -150,10 +144,10 @@ const resetForm =()=>{
 
      const checkData = () =>{
       let mErreurs = [];
-      if(!Number.isInteger(AdresseNo))
+      if(!Number.isInteger(parseInt(AdresseNo)))
       mErreurs.push(0);
-      if(CodePostal.length>7||CodePostal.length<6)
-      mErreurs.push(1);
+      //if(CodePostal.length>7||CodePostal.length<6)
+      //mErreurs.push(1);
       try{
 
         console.log(Courriel);
@@ -182,6 +176,11 @@ const resetForm =()=>{
         setSize({ width: window.innerWidth, height: window.innerHeight });
       };
       const divPrincipale= {
+        marginTop: 80,
+        margin:'auto'
+        
+      }
+      const styleForme= {
         marginTop: 80,
         textAlign:"left",
       }
@@ -212,7 +211,7 @@ const resetForm =()=>{
     Courriel: Courriel,
     Telephone: Telephone,
     Sexe: Sexe,
-    AdresseNo: AdresseNo,
+    AdresseNo: parseInt(AdresseNo),
     Rue: Rue,
     CodePostal: CodePostal,
     Cellulaire: Cellulaire,
@@ -222,7 +221,7 @@ const resetForm =()=>{
     DateDeNaissance: DateDeNaissance,
     NoAssMaladie: NoAssMaladie,
     DerniereEquipe: DerniereEquipe,
-    AnneeDerniereEquipe: AnneeDerniereEquipe,
+    AnneeDerniereEquipe: parseInt(AnneeDerniereEquipe),
     NomPere: NomPere,
     TelPere: TelPere,
     NomMere: NomMere,
@@ -231,106 +230,129 @@ const resetForm =()=>{
     APaye: false,
     
   })
+}).then(res => {
+  // Unfortunately, fetch doesn't send (404 error)
+  // into the cache itself
+  // You have to send it, as I have done below
+  if (res.status >= 400) {
+      setEstErreurConfirme(true);
+  }else{
+    setEstConfirme(true);   
+  }
 })
 }
     
-      
+function changeLangue(lang) {
+  var cookie = new Cookies();
+  cookie.set("langue",lang);
+  location.reload();
+}
 
-      
+
+
+
+
+
 
 
     return (
-<Paper >
-<Typography variant="h2">Formulaire d'inscription</Typography>
-<Container maxWidth={false} > 
+      <Paper style={divPrincipale}>
+        <button onClick={()=>{changeLangue('fr')}}>FR</button><button onClick={()=>{changeLangue('en')}}>EN</button>
 
-<form id="maForme" style={divPrincipale}>
+
+
+
+
+<Typography variant="h2">{t('TitreInscription')}</Typography>
+<Container >
+{!estErreurConfirme && !estConfirme &&
+ <form id="maForme" style={styleForme}>
 <Grid  container spacing={8}>
 <Grid container item xs={12} md={6}  spacing={2}>
     <Grid item xs={12} >
-        <h4 style={titreSection}> Identité</h4></Grid>
+        <h4 style={titreSection}> {t('Identite')} </h4></Grid>
     <Grid item xs={12} md={6} >
-      <TextField id="Prenom" label="Prénom" value={Prenom} onChange={setPrenom} />
+      <TextField id="Prenom" label={t('Prenom')} value={Prenom} onChange={setPrenom} />
     </Grid>
     <Grid item xs={12} md={6}>
-      <TextField id="Nom" label="Nom" value={Nom} onChange={setNom} />
+      <TextField id="Nom" label={t('Nom')} value={Nom} onChange={setNom} />
     </Grid>
     <Grid item xs={12} md={6}>
-      <TextField id="Sexe" label="Sexe" value={Sexe} onChange={setSexe} />
+      <TextField id="Sexe" label={t('Sexe')} value={Sexe} onChange={setSexe} />
     </Grid>
     <Grid item xs={12} md={6}>
-      <TextField id="Telephone" label="Telephone" value={Telephone} onChange={setTelephone} />
+      <TextField id="Telephone" label={t('Telephone')} value={Telephone} onChange={setTelephone} />
     </Grid>
     <Grid item xs={12} md={6}>
-      <TextField id="Courriel" label="Courriel" value={Courriel} onChange={setCourriel} />
+      <TextField id="Courriel" label={t('Courriel')} value={Courriel} onChange={setCourriel} />
     </Grid>
     <Grid item xs={12} md={6}>
-      <TextField id="DateDeNaissance" type="date" label="Date de naissance" value={DateDeNaissance} onChange={setDateDeNaissance} />
+      <TextField id="DateDeNaissance" type="date" label={t('DateDeNaissance')} value={DateDeNaissance} onChange={setDateDeNaissance} />
     </Grid>
     <Grid item xs={12} md={6}>
-      <TextField id="NoAssMaladie" label="No assurance maladie" value={NoAssMaladie} onChange={setNoAssMaladie} />
+      <TextField id="NoAssMaladie" label={t('NoAssMaladie')} value={NoAssMaladie} onChange={setNoAssMaladie} />
     </Grid>
     </Grid>
   <Grid container item xs={12} md={6} spacing={(5,2)}>
       <Grid item xs={12}>
-        <h4 style={titreSection}> Adresse:</h4> </Grid>
+        <h4 style={titreSection}> {t('Adresse')} </h4> </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="AdresseNo" label="Numéro" value={AdresseNo} onChange={setAdresseNo} />
+        <TextField id="AdresseNo" label={t('AdresseNo')} value={AdresseNo} type="number"  onChange={setAdresseNo} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="Rue" label="Rue" value={Rue} onChange={setRue} />
+        <TextField id="Rue" label={t('Rue')} value={Rue} onChange={setRue} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="CodePostal" label="CodePostal" value={CodePostal} onChange={setCodePostal} />
+        <TextField id="CodePostal" label={t('CodePostal')} value={CodePostal} onChange={setCodePostal} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="Cellulaire" label="Cellulaire" value={Cellulaire} onChange={setCellulaire} />
+        <TextField id="Cellulaire" label={t('Cellulaire')} value={Cellulaire} onChange={setCellulaire} />
       </Grid>
     </Grid>
     <Grid container  item xs={12} md={6} spacing={(5,2)}>
       <Grid item xs={12} >
-        <h4 style={titreSection}>Contact</h4> </Grid>
+        <h4 style={titreSection}>{t('Contact')} </h4> </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="NomPere" label="Nom du pere" value={NomPere} onChange={setNomPere} />
+        <TextField id="NomPere" label={t('NomPere')} value={NomPere} onChange={setNomPere} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="TelPere" label="Téléphone (père)" value={TelPere} onChange={setTelPere} />
+        <TextField id="TelPere" label={t('TelPere')} value={TelPere} onChange={setTelPere} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="NomMere" label="Nom de la mère" value={NomMere} onChange={setNomMere} />
+        <TextField id="NomMere" label={t('NomMere')} value={NomMere} onChange={setNomMere} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="TelMere" label="Téléphone (mère)" value={TelMere} onChange={setTelMere} />
+        <TextField id="TelMere" label={t('TelMere')} value={TelMere} onChange={setTelMere} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="TelUrgence" label="Téléphone urgence" value={TelUrgence} onChange={setTelUrgence} />
+        <TextField id="TelUrgence" label={t('TelUrgence')} value={TelUrgence} onChange={setTelUrgence} />
      </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="NomUrgence" label="Nom (urgence)" value={NomUrgence} onChange={setNomUrgence} />
+        <TextField id="NomUrgence" label={t('NomUrgence')} value={NomUrgence} onChange={setNomUrgence} />
       </Grid>
       <Grid item xs={12} md={6}>
-      <TextField id="LienUrgence" label="Lien" value={LienUrgence} onChange={setLienUrgence} />
+      <TextField id="LienUrgence" label={t('LienUrgence')} value={LienUrgence} onChange={setLienUrgence} />
      </Grid>
 
     </Grid>
       
     <Grid container  item xs={12} md={6} spacing={(5,2)}>
       <Grid item xs={12} >
-        <h4 style={titreSection}>Autres Infos</h4> </Grid>
+        <h4 style={titreSection}>{t('Autres Infos')} </h4> </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="DerniereEquipe" label="Dernière équipe" value={DerniereEquipe} onChange={setDerniereEquipe} />
+        <TextField id="DerniereEquipe" label={t('DerniereEquipe')} value={DerniereEquipe} onChange={setDerniereEquipe} />
       </Grid>
       <Grid item xs={12} md={6}>
-      <TextField id="AnneeDerniereEquipe" label="Année" value={AnneeDerniereEquipe} onChange={setAnneeDerniereEquipe} />
+      <TextField id="AnneeDerniereEquipe" label={t('AnneeDerniereEquipe')} value={AnneeDerniereEquipe} onChange={setAnneeDerniereEquipe} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="CourrielImpots" label="Courriel pour reçu d'impôts" value={CourrielImpots} onChange={setCourrielImpots} />
+        <TextField id="CourrielImpots" label={t('CourrielImpots')} value={CourrielImpots} onChange={setCourrielImpots} />
       </Grid>
       <Grid item xs={12} md={6}>
-        <TextField id="Commentaires" label="Commentaires" value={Commentaires} onChange={setCommentaires} />
+        <TextField id="Commentaires" label={t('Commentaires')} value={Commentaires} onChange={setCommentaires} />
      </Grid>
       <Grid item xs={12} md={6}>
-      <input type="button" onClick={handleOpen} className={classes.btnSuccess} value="Soumettre"/>
+      <input type="button" onClick={handleOpen} className={classes.btnSuccess} value={t('Soumettre')}/>
 
 
       <Modal disableEnforceFocus
@@ -344,14 +366,14 @@ const resetForm =()=>{
     <div>
             <h2 id="simple-modal-title">Confirmation de l'inscription</h2>
             <p id="simple-modal-description">
-              Merci beaucoup pour votre confiance. Après avoir confirmé votre inscription en cliquant sur le bouton ci-dessous, il vous restera à nous faire parvenir votre paiement soit par Interac en ligne au ahmvtornades@hotmail.com, ou en personne à l'arena Howie-Morenz. Finalement, lors de votre passage, vous devrez signer votre consentement à l'activité de votre enfant.
+             {t('DemandeConfirme')} 
             </p>
             </div>
 :
 <div>
             <h2 id="simple-modal-title">Un petit instant...</h2>
             <p id="simple-modal-description">
-              Nous avons décelé au moins une erreur dans votre formulaire. Veuillez en prendre connaissance et corriger avant de soumettre.
+            {t('DetailErreurs')} 
             </p>
             <List dense>
               {erreurs.map(erreur => 
@@ -367,17 +389,25 @@ const resetForm =()=>{
                 
     </div>}
 
-            <input type="button"  className={classes.btnSuccess} disabled={erreurs.length} value="Confirmer" onClick={()=>{onSubmitForm();handleClose();}}/>
-            <input type="button"  className={classes.btnSuccess} value={erreurs.length==0?"Annuler":"Corriger"} onClick={()=>{handleClose();}}/>
-            <input type="reset"  className={classes.btnSuccess} value="Recommencer" onClick={()=>{resetForm();handleClose();}}/>
+            <input type="button"  className={classes.btnSuccess} disabled={erreurs.length} value={t('Confirmer')} onClick={()=>{onSubmitForm();handleClose();}}/>
+            <input type="button"  className={classes.btnSuccess} value={erreurs.length==0?t('Annuler'):t('Corriger')} onClick={()=>{handleClose();}}/>
+            <input type="reset"  className={classes.btnSuccess} value={t('Recommencer')} onClick={()=>{resetForm();handleClose();}}/>
           </div>
       </Modal>
       </Grid> </Grid> 
 
       
        </Grid>
-    </form>
+    </form>}
+
+{estConfirme && <h2>Tout est beau, on s'en reparle</h2>}
+
+{estErreurConfirme && <h2>Problème... veuillez recommmencer ou nous</h2>}
+
     </Container>
+
+
+
 </Paper>
  );
 
