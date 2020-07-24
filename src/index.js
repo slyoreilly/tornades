@@ -5,9 +5,9 @@ import './index.css';
 import { BrowserRouter} from 'react-router-dom';
 import './i18n';
 
-if (process.env.NODE_ENV !== 'production') {
+//if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
-}
+//}
 
 ReactDOM.render(
   <BrowserRouter>
