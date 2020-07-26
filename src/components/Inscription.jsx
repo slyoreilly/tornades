@@ -17,6 +17,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+
 
 function getModalStyle() {
   const top = 50;
@@ -49,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: '100%',
       textAlign:'center',
+      color:'#00FF00',
       display: 'flex',
       flexDirection: 'row',
       marginTop:'1rem',
@@ -63,12 +69,10 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: 'flex-start'
     },
     paper: {
-      position: 'absolute',
-      width: 400,
       backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
+      marginTop:'50px'
     },
 
     btnSuccess:{
@@ -177,11 +181,13 @@ const resetForm =()=>{
       };
       const divPrincipale= {
         marginTop: 80,
+        marginBottom: 80,
         margin:'auto'
         
       }
       const styleForme= {
         marginTop: 80,
+        paddingTop: 80,
         textAlign:"left",
       }
       const inputBox= {
@@ -256,7 +262,128 @@ function changeLangue(lang) {
 
 
     return (
-      <Paper style={divPrincipale}>
+      <div style={divPrincipale}>
+        <Container >
+<Grid  container spacing={8}>
+<Grid container item xs={12} md={6}  spacing={2}>
+    <Grid item xs={12} >
+        <h4 style={titreSection}> Inclusions </h4></Grid>
+
+    <Grid item xs={12} >
+
+    <Card >
+                    
+                    <CardActionArea>
+
+                      <CardContent>
+                        
+
+ <List dense>
+            
+
+                <ListItem>
+                  <ListItemText
+                    primary="Saison régulière" secondary="18 à 26 parties"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Entraînements"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Séries éliminatoires"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Tournoi" secondary="Novice à Midget"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Paire de bas"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Ensemble de chandails de parties"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Carte privilège Hockey Expert"
+                  />
+                </ListItem>
+                
+            </List>
+
+            </CardContent>
+                    </CardActionArea>
+
+                  </Card>
+            
+      </Grid>
+    </Grid>
+  <Grid container item xs={12} md={6} spacing={(5,2)}>
+      <Grid item xs={12}>
+        <h4 style={titreSection}>Prix</h4> </Grid>
+      <Grid item xs={12}>
+
+      <Card >
+                    
+                    <CardActionArea>
+
+                      <CardContent>
+      <List dense>
+            
+
+                <ListItem>
+                  <ListItemText
+                    primary="Pré-novice: 150$" secondary="2014-2015-2016"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Novice: 300$" secondary="2012-2013"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Atome: 300$" secondary="2010-2011"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Peewee: 300$" secondary="2008-2009"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Bantam: 300$" secondary="2006-2007"
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Midget: 350$" secondary="2003-2004-2005"
+                  />
+                </ListItem>
+                
+            </List>
+
+            </CardContent>
+                    </CardActionArea>
+
+                  </Card>
+
+     
+      </Grid>
+    </Grid>
+ 
+    </Grid>
+    </Container>
+      <Paper  className={classes.paper} >
         <button onClick={()=>{changeLangue('fr')}}>FR</button><button onClick={()=>{changeLangue('en')}}>EN</button>
 
 
@@ -265,6 +392,9 @@ function changeLangue(lang) {
 
 <Typography variant="h2">{t('TitreInscription')}</Typography>
 <Container >
+<Grid  container spacing={8}>
+
+       </Grid>
 {!estErreurConfirme && !estConfirme &&
  <form id="maForme" style={styleForme}>
 <Grid  container spacing={8}>
@@ -409,6 +539,7 @@ function changeLangue(lang) {
 
 
 </Paper>
+</div>
  );
 
 }
