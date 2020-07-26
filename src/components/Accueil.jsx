@@ -79,7 +79,7 @@ function Accueil() {
                           AHMV
                           </Typography>
                           <Typography variant="body2" color="textSecondary" component="p">
-                          Pour tous renseignements supplémentaires, vous pouvez nous joindre par courriel à ahmvtornade@hotmail.com ou par téléphone au (514) 886-1423 (en soirée seulement).
+                          Pour tous renseignements supplémentaires, vous pouvez nous joindre par courriel à ahmvtornade@hotmail.com ou par téléphone au (514) 742-8922.
 Merci et bonne saison !
 La direction d’AHMV
                           </Typography>

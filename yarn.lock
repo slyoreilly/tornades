@@ -126,9 +126,9 @@
     "@types/react" "*"
 
 "@types/react@*":
-  version "16.9.42"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.42.tgz#9776508d59c1867bbf9bd7f036dab007fdaa1cb7"
-  integrity sha512-iGy6HwfVfotqJ+PfRZ4eqPHPP5NdPZgQlr0lTs8EfkODRBV9cYy8QMKcC9qPCe1JrESC1Im6SrCFR6tQgg74ag==
+  version "16.9.43"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.43.tgz#c287f23f6189666ee3bebc2eb8d0f84bcb6cdb6b"
+  integrity sha512-PxshAFcnJqIWYpJbLPriClH53Z2WlJcVZE+NP2etUtWQs2s7yIMj3/LDKZT/5CHJ/F62iyjVCDu2H3jHEXIxSg==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -1478,9 +1478,9 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000618, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30001097"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30001097.tgz#e3268a7f2c01695cf486289161ac9ef9cf623349"
-  integrity sha512-6zCYv0bxVP6ppQ/XpZsTQZNDC2zUutl8Yes2TDj7LyIDyBhq2N9JbQjcqQo6mAe8IVfszW5pmE0yHvAYD0zEmQ==
+  version "1.0.30001099"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30001099.tgz#afd21d6d6fd9602252a759eb0150385531fa2101"
+  integrity sha512-1vc6swTmt/DbbRNlLuC8PasWqL1rHJiV4P1r++glSgyu2joqBpRcyHaJFVk7Piwz9hqYNIgXoDHre1mcwnD6QQ==
 
 cardinal@^2.1.1:
   version "2.1.1"
@@ -5893,9 +5893,9 @@ react-hook-form-input@^1.1.10:
   integrity sha512-RkkJeQmfUDT+Wq6iVGdvNY3rLTAD7KW1utgbCIyKRpDh41lf2Z8dC57GSapAh8TMLL1s6F57CUqXBZuGHZQgxA==
 
 react-hook-form@^6.0.3:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.0.3.tgz#1e9979e68642b601fcbdab3cc5d7b46283f4401a"
-  integrity sha512-LU+SlFdt4KT1FdvrhPW1J9JKHg8+AvkAxlcGjdIPyVHRQj2/GU+HmCVraKzPGks6POty05NtoH/Uga0dLemzrw==
+  version "6.0.4"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-6.0.4.tgz#c5fc36886f0b4cadd8a2b3bb83a3dbde01ab52a3"
+  integrity sha512-LQIQBenTkSLtwes2tiFzqkOlAaa/ppbiaAFnpngufS8eM139cl76h7YybJso96i6VOSIhlfRpUbDPc+VoA/bog==
 
 react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.0, react-is@^16.8.1, react-is@^16.8.4:
   version "16.13.1"
