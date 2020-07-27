@@ -11,6 +11,8 @@ import Arenas from './arenas'
 import Tournoi from './tournoi'
 import Matchs from './matchs'
 import Contact from './contact'
+import Connexion from './connexion'
+import Joueurs from './joueurs'
 //hooks
 //import useGames from '../hooks/useGames';
 //import useSummary from '../hooks/useSummary';
@@ -83,8 +85,21 @@ const SwitchRoutes = ({ history, ...props }) => {
                         isMobile={isMobile}
                     />}
             />
+                    <Route
+                path={"/connexion/"}
+                render={(props) =>
+                    <Connexion {...props}
+                        isMobile={isMobile}
+                    />}
+            />
 
-          
+<Route
+                path={"/joueurs/"}
+                render={(props) =>
+                    <Joueurs {...props}
+                        isMobile={isMobile}
+                    />}
+            />
 
 
         </Switch>
