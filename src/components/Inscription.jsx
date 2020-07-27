@@ -213,7 +213,7 @@ const resetForm =()=>{
 
 
       function onSubmitForm() {
-        fetch('http://localhost:1337/joueurs', {
+        fetch('/joueurs', {
   method: 'POST',
   headers: {
     'Accept': 'application/json',
