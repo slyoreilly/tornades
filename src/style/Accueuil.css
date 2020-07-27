@@ -13,7 +13,7 @@
         margin:0;
         min-height:100vh;
         width:100%;
-        background-image: url("http://68.66.193.234:3000/uploads/287edab0333f4ec5b63c5494ccea5148.png");
+        background-image: url("/images/emyMarque.png");
         background-repeat:no-repeat;
         background-attachment:fixed;
         background-size:cover;
@@ -29,7 +29,7 @@
         margin-top: 80;
         padding-top: 50;
         margin:0;
-        background-image: url("http://68.66.193.234:3000/uploads/287edab0333f4ec5b63c5494ccea5148.png");
+        background-image: url("/images/emyMarque.png");
         background-repeat:no-repeat;
         background-attachment:fixed;
         background-size:cover;
