@@ -74,6 +74,15 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(2, 4, 3),
       marginTop:'50px'
     },
+    modal: {
+      backgroundColor: theme.palette.background.paper,
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+      top: `$50%`,
+      left: `$50%`,
+      transform: `translate(-$50%, -$50%)`,
+
+    },
 
     btnSuccess:{
       backgroundColor: theme.palette.success,
@@ -96,7 +105,6 @@ function Inscription(props) {
     }, []);
 
     const classes = useStyles();
-    const [modalStyle] = React.useState(getModalStyle);
     const [open, setOpen] = React.useState(false);
     const [Prenom, setPrenom] = useInput('')
     const [Telephone, setTelephone] = useInput('')
@@ -490,8 +498,8 @@ function changeLangue(lang) {
         onClose={handleClose}
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
-      >
-    <div style={modalStyle} className={classes.paper}>
+      > 
+    <div className={classes.modal}>
     {erreurs.length ==0?
     <div>
             <h2 id="simple-modal-title">Confirmation de l'inscription</h2>
