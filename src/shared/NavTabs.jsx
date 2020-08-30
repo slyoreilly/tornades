@@ -15,6 +15,7 @@ import 'typeface-indie-flower';
 import Typography from '@material-ui/core/Typography';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
+import { useCookies } from "react-cookie";
 
 
     //const styleTabs={
@@ -31,12 +32,13 @@ const NavTabs = ({ history, ...props }) => {
     const [value, setValue] = React.useState(0);
     const [langue, setLangue] = React.useState('en');
     const { t, i18n } = useTranslation('NavTabs');
-
+    const [cookies, setCookie] = useCookies(["jeton","user"]);
+    console.log("cookiesUser"+cookies.user);
     const theme = useTheme(props.theme);
     useEffect(() => {
         SetTabsValue();
-        const cookies = new Cookies();
-        cookies.set('langue', langue, { path: '/' });
+        const uCookies = new Cookies();
+        uCookies.set('langue', langue, { path: '/' });
     }, []);
 
     useEffect(() => history.listen(() => {
@@ -56,6 +58,7 @@ const NavTabs = ({ history, ...props }) => {
 
     function SetTabsValue() {
         const path = history.location.pathname.substring(1, history.location.pathname.indexOf('/', 1));
+        
         switch (path) {
             case 'accueil':
                 setValue(0);
@@ -114,6 +117,8 @@ const NavTabs = ({ history, ...props }) => {
             <Tab label={t('Arenas')} component={Link} to="/arenas/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
             <Tab label={t('Inscription')} component={Link} to="/inscription/" style={{ fontSize: '1.3rem' }}  className={isMobile ? "mobileTab" : "tab"}/>
             <Tab label={t('Contact')} component={Link} to="/contact/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
+            <Tab label={cookies.user} component={Link} to="/connexion/" style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
+
         </Tabs>
        
         </Typography>

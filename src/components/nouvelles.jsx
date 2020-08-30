@@ -11,6 +11,9 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import 'typeface-dosis';
+//import { MarkdownPreview } from 'react-marked-markdown'
+import parse from "html-react-parser";
+import  marked from 'marked';
 
 const NavTabsWidth = 100;
 
@@ -22,6 +25,7 @@ const useFetch = url => {
   async function fetchData() {
     const response = await fetch(url);
     const json = await response.json();
+    json.sort((a,b)=>{return ((b.created_at).localeCompare(a.created_at))});
     setData(json);
     setLoading(false)  }
 
@@ -123,8 +127,9 @@ paddingTop:'1rem'
                           <Typography gutterBottom variant="h5" component="h2">
                           {nouvelle.Titre}
                           </Typography>
-                          <Typography variant="body2" color="textSecondary" component="p">
-                          {nouvelle.Description}
+                          <Typography variant="body2" color="textSecondary">
+                           {parse(marked(nouvelle.Description))}
+                          
                           </Typography>
                         </CardContent>
                       </CardActionArea>

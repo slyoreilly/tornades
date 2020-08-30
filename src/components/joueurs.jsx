@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import '../App.css';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,20 +11,44 @@ import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import 'typeface-dosis';
+import { useCookies } from "react-cookie";
 const NavTabsWidth = 100;
 
 
+
 const useFetch = url => {
+  const [cookies, setCookie] = useCookies(["jeton","user"]);
   const [data, setData] = useState(null);
   const [loadingP, setLoadingP] = useState(true);
   const [loadingE, setLoadingE] = useState(true);
   const [equipes, setEquipes] = useState(null);
   async function fetchData() {
-    const response = await fetch("/joueurs");
-    const json = await response.json();
-    setData(json);
-    setLoadingP(false);  
+   // const response = await fetch("/joueurs");
+    ///const json = await response.json();
+    //setData(json);
+    // Request API.
+axios
+.get('/joueurs', {
+  headers: {
+    Authorization: `Bearer ${cookies.jeton}`,
+  },
+})
+.then(response => {
+  // Handle success.
+  console.log('Data: ', response.data);
+  //const json = await response.data;
+  response.data.sort((a,b)=>{return ((a.DateDeNaissance).localeCompare(b.DateDeNaissance))});
+  setData( response.data);
+  setLoadingP(false);  
+})
+.catch(error => {
+  // Handle error.
+  console.log('An error occurred:', error.response);
+});
+   
   }
+
+
     async function fetchDataEquipes() {
       const response = await fetch("/equipes");
       const json = await response.json();
@@ -74,10 +99,9 @@ new Date().toLocaleTimeString("en-US",options);
             <Table  size="small">
               <TableHead>
                 <TableRow>
-                  <TableCell onClick={()=>{data.sort((a,b)=>{return ((data.id+"").localeCompare(data.id))});}}>No</TableCell>
-                  <TableCell align="right" >Nom</TableCell>
-                  <TableCell align="right">Prenom</TableCell>
-                  <TableCell align="right">Date de Naissance</TableCell>
+                  <TableCell align="center" >Nom</TableCell>
+                  <TableCell align="center">Prenom</TableCell>
+                  <TableCell onClick={()=>{data.sort((a,b)=>{return ((a.DateDeNaissance).localeCompare(b.DateDeNaissance))});}} align="center">Date de Naissance</TableCell>
                 </TableRow>
 
               </TableHead>
@@ -86,10 +110,9 @@ new Date().toLocaleTimeString("en-US",options);
                       (
       
                         <TableRow key={joueurs.Id} >
-                          <TableCell align="center">{joueurs.Id}</TableCell>
                           <TableCell align="center">{joueurs.Nom}</TableCell>
                           <TableCell align="center">{joueurs.Prenom}</TableCell>
-                          <TableCell align="center">{joueurs.Sexe}</TableCell>
+                          <TableCell align="center">{joueurs.DateDeNaissance.split('-')[0]}</TableCell>
                         </TableRow>
                     
                           ))}

@@ -13,6 +13,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import parse from "html-react-parser";
+import  marked from 'marked';
 const NavTabsWidth = 100;
 
 function Accueil() {
@@ -21,6 +23,23 @@ function Accueil() {
     const [size, setSize] = useState({ width: window.innerWidth, height: window.innerHeight });
     const [navHeight, setNavHeight] = useState(0);
   
+const useFetch = url => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  async function fetchData() {
+    const response = await fetch(url);
+    const json = await response.json();
+    json.sort((a,b)=>{return ((b.created_at).localeCompare(a.created_at))});
+    setData(json);
+    setLoading(false)  }
+
+  useEffect(() => {
+    fetchData()
+  }, []);
+
+  return {loading,data};
+};
     let navRef = useRef(null);
     const isMobile= size.height > size.width;
   
@@ -53,7 +72,7 @@ function Accueil() {
     const handleWindowSizeChange = () => {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
-
+    let {loading,data} = useFetch("/nouvelles");
     return (
         <Container maxWidth={false} className={isMobile?"conteneur-accueil-mobile":"conteneur-accueil"}> 
          <Grid container spacing={5} >
@@ -92,8 +111,32 @@ La direction d’AHMV
                       </CardActions>
                     </Card>
  </Grid>
- <Grid item xs={12} md={9} >
+ 
+ <Grid item xs={12} md={6} >
           </Grid>
+          <Grid item xs={12} md={3} >
+          {loading ? <div>Loading...</div> : <Card style={carte} >
+
+                    
+                    <CardActionArea >
+                      <CardMedia
+                      
+                        image={""+data[0].Visuel.url}
+                        title={data[0].Titre}
+                      />
+                      <CardContent
+                     >
+                        <Typography gutterBottom variant="h5" component="h2">
+                        {data[0].Titre}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                        {parse(marked(data[0].Description))}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+
+                    </Card>}
+ </Grid>
 
  </Grid>
  <Grid container spacing={5}>

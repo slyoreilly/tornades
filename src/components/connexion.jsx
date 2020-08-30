@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
+import { useCookies } from "react-cookie";
 
 const jeton = 'mJeton';
 
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function SignIn() {
+  const [cookies, setCookie] = useCookies(["jeton","user"]);
   const classes = useStyles();
   const [courriel, setCourriel] = useInput('')
   const [mdp, setMDP] = useInput('')
@@ -64,7 +66,6 @@ export default function SignIn() {
 
 
   function handleSubmit() {
-    alert('a');
 // Request API.
 axios
   .post('/auth/local', {
@@ -77,16 +78,25 @@ axios
     console.log('Well done!');
     console.log('User profile', response.data.user);
     jeton=response.data.jwt
+    setCookie("jeton", response.data.jwt, {      path: "/"    });  
+    setCookie("user", response.data.user.username, {      path: "/"    });  
     console.log('User token', jeton);
-    alert('b');
+
   })
   .catch(error => {
     // Handle error..
-    alert('c');
+
     console.log('An error occurred:', error.response);
 
   });
 
+
+}
+
+function logOut() {
+
+  setCookie("jeton", "", {      path: "/"    });  
+  setCookie("user", "", {      path: "/"    });  
 
 }
 
@@ -145,10 +155,11 @@ axios
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link href="#" variant="body2" onClick={()=>{logOut();}}>
+                {"Log Out"}
               </Link>
             </Grid>
+
           </Grid>
         </form>
       </div>
