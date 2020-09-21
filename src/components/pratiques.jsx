@@ -24,7 +24,7 @@ const useFetch = url => {
   async function fetchData() {
     const response = await fetch("/pratiques");
     const json = await response.json();
-    json.sort(function(a,b){return (a.Jour>b.Jour);});
+    json.sort(function(a,b){if(a.Jour.localeCompare(b.Jour)==0){return ( a.Debut.localeCompare(b.Debut));}else{return (a.Jour>b.Jour);};});
     setData(json);
     setLoadingP(false);  
   }
@@ -67,8 +67,19 @@ function Pratiques() {
   minute: "2-digit"
 }
 
+const optionsDate = {
+  timeZone:"UTC",
+  hour12 : false,
+}
+
 var heure = new Date().toLocaleTimeString("en-US",options);
-var maintenant = new Date();
+var  maintenant= new Date();
+var aujourdhui =maintenant;
+aujourdhui.setHours(0);
+aujourdhui.setMinutes(0);
+aujourdhui.setSeconds(0);
+aujourdhui.setMilliseconds(0);
+
     return (
 <Container>
         
@@ -98,7 +109,8 @@ var maintenant = new Date();
   onClick={()=>{
 
     setInclusAncien(!inclusAncien);
-  console.log(maintenant);
+  console.log("Maintenant: "+maintenant);
+  console.log("Auj:" +aujourdhui);
   }}
 
 /> Afficher les anciennes pratiques
@@ -109,6 +121,7 @@ var maintenant = new Date();
                 <TableRow>
                   <TableCell onClick={()=>{data.sort((a,b)=>{return ((data.id+"").localeCompare(data.id))});}}>No</TableCell>
                   <TableCell align="right" >Jour</TableCell>
+                  <TableCell align="right" >Date</TableCell>
                   <TableCell align="right">Équipes</TableCell>
                   <TableCell align="right">Heure</TableCell>
                 </TableRow>
@@ -119,14 +132,15 @@ var maintenant = new Date();
                {data.filter(
                 pratiques =>(Object.keys(pratiques.equipes).filter(
                 key=>(pratiques.equipes[key].id==selEquipe||selEquipe==0)).filter(
-                  key=>(new Date(pratiques.Jour)>=maintenant||inclusAncien)).length>0)).map(pratiques => 
+                  key=>(new Date(pratiques.Jour+"T00:00:00.000-04:00")>=aujourdhui||inclusAncien)).length>0)).map(pratiques => 
                 (
 
                   <TableRow key={pratiques.id} >
                     <TableCell component="th" scope="row">
                       {pratiques.id}
                     </TableCell>
-                    <TableCell align="right">{joursSemaine[new Date(pratiques.Jour).getDay()]+",  "+pratiques.Jour}</TableCell>
+                    <TableCell align="right">{joursSemaine[new Date(pratiques.Jour).getDay()]}</TableCell>
+                    <TableCell align="right">{new Date(pratiques.Jour +"T00:00:00.000-04:00").toLocaleDateString("fr-CA",optionsDate)}</TableCell>
                     <TableCell align="right">
                             {Object.keys(pratiques.equipes).map(cleEq => 
                         (
