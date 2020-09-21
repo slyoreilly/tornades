@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import '../App.css';
+//import Checkbox from './Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,17 +11,20 @@ import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import 'typeface-dosis';
+import { CheckBox } from '@material-ui/icons';
 const NavTabsWidth = 100;
-
+const joursSemaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"]
 
 const useFetch = url => {
   const [data, setData] = useState(null);
   const [loadingP, setLoadingP] = useState(true);
   const [loadingE, setLoadingE] = useState(true);
   const [equipes, setEquipes] = useState(null);
+
   async function fetchData() {
     const response = await fetch("/pratiques");
     const json = await response.json();
+    json.sort(function(a,b){return (a.Jour>b.Jour);});
     setData(json);
     setLoadingP(false);  
   }
@@ -54,6 +58,7 @@ function Pratiques() {
  //const {equipes} = useFetchEquipes("/equipes");
  const selectRef = useRef(0);
  const [selEquipe, setSelEquipe] = useState(0);
+ const [inclusAncien, setInclusAncien] = useState(false);
 
  const options = {
   timeZone:"America/Toronto",
@@ -62,7 +67,8 @@ function Pratiques() {
   minute: "2-digit"
 }
 
-new Date().toLocaleTimeString("en-US",options);
+var heure = new Date().toLocaleTimeString("en-US",options);
+var maintenant = new Date();
     return (
 <Container>
         
@@ -79,7 +85,25 @@ new Date().toLocaleTimeString("en-US",options);
 
                 ))}
                 </select>
+                <br/>
+                
+                <label>
 
+<input
+
+  type="checkbox"
+
+  defaultChecked={false}
+
+  onClick={()=>{
+
+    setInclusAncien(!inclusAncien);
+  console.log(maintenant);
+  }}
+
+/> Afficher les anciennes pratiques
+
+</label>
             <Table  size="small">
               <TableHead>
                 <TableRow>
@@ -92,16 +116,17 @@ new Date().toLocaleTimeString("en-US",options);
               </TableHead>
               <TableBody>
              
-               {  data.filter(
+               {data.filter(
                 pratiques =>(Object.keys(pratiques.equipes).filter(
-                key=>(pratiques.equipes[key].id==selEquipe||selEquipe==0)).length>0)).map(pratiques => 
+                key=>(pratiques.equipes[key].id==selEquipe||selEquipe==0)).filter(
+                  key=>(new Date(pratiques.Jour)>=maintenant||inclusAncien)).length>0)).map(pratiques => 
                 (
 
                   <TableRow key={pratiques.id} >
                     <TableCell component="th" scope="row">
                       {pratiques.id}
                     </TableCell>
-                    <TableCell align="right">{pratiques.Jour}</TableCell>
+                    <TableCell align="right">{joursSemaine[new Date(pratiques.Jour).getDay()]+",  "+pratiques.Jour}</TableCell>
                     <TableCell align="right">
                             {Object.keys(pratiques.equipes).map(cleEq => 
                         (
