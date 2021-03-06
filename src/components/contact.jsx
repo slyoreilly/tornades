@@ -66,7 +66,7 @@ Pour toute information ou pour prendre un rendez-vous, écrire un courriel avec 
 <li>Aréna Howie-Morenz</li>
 <li>8650 rue Querbes</li>
 <li>Montréal, QC H3N 2X4</li>
-<li>Informations : 514-742-8922 (Après 17h svp)</li>
+<li>Informations : 514-887-8429</li>
                           </Typography>
                         </CardContent>
                       </CardActionArea>
