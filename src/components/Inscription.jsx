@@ -585,8 +585,6 @@ return (
       >
        {t('Soumettre')}
       </Button>
-                  <input type="button" onClick={handleOpen} className={classes.btnSuccess} value={t('Soumettre')} />
-
 
                   <Modal disableEnforceFocus
                     open={open}
@@ -622,7 +620,7 @@ return (
 
                         </div>}
 
-                     { /*<input type="button" className={classes.btnSuccess} disabled={erreurs.length} value={t('Confirmer')} onClick={() => { onSubmitForm(); handleClose(); }} />*/}
+                     { <input type="button" className={classes.btnSuccess} disabled={erreurs.length} value={t('Confirmer')} onClick={() => { onSubmitForm(); handleClose(); }} />}
                       <input type="button" className={classes.btnSuccess} value={erreurs.length == 0 ? t('Annuler') : t('Corriger')} onClick={() => { handleClose(); }} />
                       <input type="reset" className={classes.btnSuccess} value={t('Recommencer')} onClick={() => { resetForm(); handleClose(); }} />
                     </div>
