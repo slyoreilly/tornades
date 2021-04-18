@@ -24,7 +24,7 @@ function Accueil() {
     const [navHeight, setNavHeight] = useState(0);
   
 const useFetch = url => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   async function fetchData() {
@@ -115,7 +115,7 @@ La direction d’AHMV
  <Grid item xs={12} md={6} >
           </Grid>
           <Grid item xs={12} md={3} >
-          {loading ? <div>Loading...</div> : <Card style={carte} >
+          {loading || data.length==0 ? <div>Loading...</div> : <Card style={carte} >
 
                     
                     <CardActionArea >
