@@ -63,15 +63,15 @@ const NavTabs = ({ history, ...props }) => {
             case 'accueil':
                 setValue(0);
                 break;
-                case 'nouvelles':
-                    setValue(1);
-                    break;
-                    case 'pratiques':
-                        setValue(2);
-                        break;
-                        case 'matchs':
-                            setValue(3);
-                            break;
+            case 'nouvelles':
+                setValue(1);
+                break;
+            case 'pratiques':
+                setValue(2);
+                break;
+            case 'matchs':
+                setValue(3);
+                break;
             case 'tournoi':
                 setValue(4);
                 break;
@@ -81,7 +81,7 @@ const NavTabs = ({ history, ...props }) => {
             case 'informations':
                 setValue(6);
                 break;
-                case 'contact':
+            case 'contact':
                     setValue(7);
                     break;
             default:
@@ -111,11 +111,11 @@ const NavTabs = ({ history, ...props }) => {
         >
             <Tab  label={t('Accueil')} component={Link} to={ "/"} style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
             <Tab  label={t('Nouvelles')} component={Link} to={ "/nouvelles/"}  style={{ fontSize: '1.3rem' }}  className={isMobile ? "mobileTab" : "tab"} />
+            <Tab label={t('Inscription')} component={Link} to="/inscription/" style={{ fontSize: '1.3rem' }}  className={isMobile ? "mobileTab" : "tab"}/>
             <Tab label={t('Pratiques')} component={Link} to={"/pratiques/"}  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
             <Tab label={t('Matchs')} component={Link} to="/matchs/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
             <Tab label={t('Tournoi')} component={Link} to="/tournoi/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
             <Tab label={t('Arenas')} component={Link} to="/arenas/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
-            <Tab label={t('Inscription')} component={Link} to="/inscription/" style={{ fontSize: '1.3rem' }}  className={isMobile ? "mobileTab" : "tab"}/>
             <Tab label={t('Contact')} component={Link} to="/contact/"  style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
             <Tab label={cookies.user} component={Link} to="/connexion/" style={{ fontSize: '1.3rem' }} className={isMobile ? "mobileTab" : "tab"} />
 
