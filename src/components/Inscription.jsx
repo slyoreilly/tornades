@@ -152,6 +152,7 @@ function Inscription(props) {
 
   const handleClose = (event) => {
     setOpen(false);
+    setErreurs([]);
   };
 
   const resetForm = () => {
@@ -420,19 +421,19 @@ return (
       </Grid>
     </Container>
     <Paper className={classes.paper} >
-      <button onClick={() => { changeLangue('fr') }}>FR</button><button onClick={() => { changeLangue('en') }}>EN</button>
+     
 
 
 
 
 
-      <Typography variant="h2">{t('TitreInscription')}</Typography>
+      
       <Container >
-        <Grid container spacing={8}>
 
-        </Grid>
         {!estErreurConfirme && !estConfirme &&
           <form id="maForme" style={styleForme}>
+             <button onClick={() => { changeLangue('fr') }}>FR</button><button onClick={() => { changeLangue('en') }}>EN</button>
+            <Typography variant="h2" align="center">{t('TitreInscription')}</Typography>
             <Grid container spacing={8}>
               <Grid container item xs={12} md={6} spacing={2}>
                 <Grid item xs={12} >
@@ -444,7 +445,13 @@ return (
                   <TextField id="Prenom" label={t('Prenom')} value={Prenom} onChange={setPrenom} fullWidth />
                 </Grid>
                 <Grid item xs={12}>
-                  <TextField id="Sexe" label={t('Sexe')} value={Sexe} onChange={setSexe} fullWidth />
+                <FormControl component="fieldset" fullwidth>
+                    <FormLabel component="legend">{t('Sexe')}</FormLabel>
+                    <RadioGroup aria-label="Sexe" name="Sexe" value={Sexe} onChange={setSexe} row>
+                      <FormControlLabel value="M" control={<Radio />} label={t('Garcon')} />
+                      <FormControlLabel value="F" control={<Radio />} label={t('Fille')} />
+                    </RadioGroup>
+                  </FormControl>
                 </Grid>
 
                 <Grid item xs={12} md={6}>
@@ -632,9 +639,9 @@ return (
             </Grid>
           </form>}
 
-        {estConfirme && <h2>Tout est beau, on s'en reparle</h2>}
+        {estConfirme && <p class="mt-3">{t('InscriptionOK')}</p>}
 
-        {estErreurConfirme && <h2>Problème... veuillez recommmencer ou nous</h2>}
+        {estErreurConfirme && <p class="mt-3">{t('InscriptionPasOK')} <a href="mailto:ahmvtornade@hotmail.com">ahmvtornade@hotmail.com</a></p>}
 
       </Container>
 

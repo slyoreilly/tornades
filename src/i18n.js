@@ -11,12 +11,13 @@ const languageDetector = new LanguageDetector();
 
 const langDetectorOptions = {
   // order and from where user language should be detected
-  order: ['cookie', 'localStorage', 'navigator'],
+  order: ['querystring', 'cookie', 'localStorage', 'navigator'],
 
   // keys or params to lookup language from
   lookupCookie: 'langue',
   lookupLocalStorage: 'langue',
-
+  lookupQuerystring: 'langue',
+  cookieMinutes: 525600,   // 1 year
   // cache user language on
   caches: ['localStorage', 'cookie'],
   excludeCacheFor: ['cimode'], // languages to not persist (cookie, localStorage)
@@ -26,22 +27,16 @@ const langDetectorOptions = {
 };
 
 i18n
-  // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
-  // learn more: https://github.com/i18next/i18next-http-backend
+
   .use(Backend)
-  // detect user language
-  // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector)
-  // pass the i18n instance to react-i18next.
   .use(initReactI18next)
-  // init i18next
-  // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     fallbackLng: 'fr',
     debug: true,
     whitelist:['fr','en'],
     detection: langDetectorOptions,
-
+    load: 'languageOnly',
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
     },
@@ -107,6 +102,10 @@ i18n
                 "Recommencer":"Reset",
                 "ConfirmationInscription":"Inscription Confirmation",
                 "UnInstant":"Just a moment...",
+                "Garcon": "Boy",
+                "Fille": "Girl",
+                "InscriptionOK": "Subscription was correctly registered. You can leave page or refresh to subscribe a new member",
+                "InscriptionPasOK": "Problem... Please start over or contact us directly at ",
 
             }
         },
@@ -166,7 +165,10 @@ i18n
                 "Recommencer":"Recommencer",
                 "ConfirmationInscription":"Confirmation de l'inscription",
                 "UnInstant":"Un petit instant...",
-                
+                "Garcon": "Garçon",
+                "Fille": "Fille",
+                "InscriptionOK": "L'incription a été correctement effectuée. VOus pouvez quitter ou rafraîchir pour procéder à l'inscription d'un nouveau membre.",
+                "InscriptionPasOK": "Problème... veuillez recommmencer ou nous contacter directement au ",
 
             }
         }
