@@ -571,6 +571,23 @@ return (
                 <Grid item xs={12} md={6}>
                   <TextField id="TelephoneUrgence" label={t('Telephone')} value={TelephoneUrgence} onChange={setTelephoneUrgence} />
                 </Grid>
+                <Grid item xs={12}>
+                  <ul>
+                    <li>
+                      Un premier paiement de 50% pourra être fait par chèque, virement Interac ou en comptant.
+                    </li>
+                    <li>
+                      Le second paiement de 50% pourra être fait au plus tard le 15 octobre.
+                    </li>
+                    <li>
+                    Une preuve de résidence (autre que permis de conduire) et de date de naissance vous sera demandé (obligatoire)
+                    </li>
+                  </ul>
+                </Grid>
+                <Grid item xs={12}>
+                <a href='./../../files/termesEtConditions_v2.pdf' download>Termes et conditions</a>
+               
+                </Grid>
               </Grid>
 
               <Grid container item xs={12} md={6} spacing={(5, 2)}>
