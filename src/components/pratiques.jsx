@@ -61,14 +61,12 @@ function Pratiques() {
  const [inclusAncien, setInclusAncien] = useState(false);
 
  const options = {
-  timeZone:"America/Toronto",
   hour12 : false,
   hour:  "2-digit",
   minute: "2-digit"
 }
 
 const optionsDate = {
-  timeZone:"UTC",
   hour12 : false,
 }
 
