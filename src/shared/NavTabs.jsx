@@ -66,23 +66,26 @@ const NavTabs = ({ history, ...props }) => {
             case 'nouvelles':
                 setValue(1);
                 break;
+            case 'inscription':
+                    setValue(2);
+                    break;    
             case 'pratiques':
-                setValue(2);
-                break;
-            case 'matchs':
                 setValue(3);
                 break;
-            case 'tournoi':
+            case 'matchs':
                 setValue(4);
                 break;
-            case 'arenas':
+            case 'tournoi':
                 setValue(5);
                 break;
-            case 'informations':
+            case 'arenas':
                 setValue(6);
                 break;
+            case 'informations':
+                setValue(7);
+                break;
             case 'contact':
-                    setValue(7);
+                    setValue(8);
                     break;
             default:
         }

@@ -132,7 +132,7 @@ aujourdhui.setMilliseconds(0);
                {data.filter(
                 pratiques =>(Object.keys(pratiques.equipes).filter(
                 key=>(pratiques.equipes[key].id==selEquipe||selEquipe==0)).filter(
-                  key=>(new Date(pratiques.Jour+"T00:00:00.000-04:00")>=aujourdhui||inclusAncien)).length>0)).map(pratiques => 
+                  key=>(new Date(pratiques.Jour)>=aujourdhui||inclusAncien)).length>0)).map(pratiques => 
                 (
 
                   <TableRow key={pratiques.id} >
@@ -140,7 +140,7 @@ aujourdhui.setMilliseconds(0);
                       {pratiques.id}
                     </TableCell>
                     <TableCell align="right">{joursSemaine[new Date(pratiques.Jour).getDay()]}</TableCell>
-                    <TableCell align="right">{new Date(pratiques.Jour +"T00:00:00.000-04:00").toLocaleDateString("fr-CA",optionsDate)}</TableCell>
+                    <TableCell align="right">{new Date(pratiques.Jour ).toLocaleDateString("fr-CA",optionsDate)}</TableCell>
                     <TableCell align="right">
                             {Object.keys(pratiques.equipes).map(cleEq => 
                         (
