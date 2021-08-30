@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import 'typeface-dosis';
 import { CheckBox } from '@material-ui/icons';
 const NavTabsWidth = 100;
-const joursSemaine = ["Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi","Dimanche"]
+const joursSemaine = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"]
 
 const useFetch = url => {
   const [data, setData] = useState(null);
