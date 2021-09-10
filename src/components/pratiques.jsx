@@ -24,7 +24,7 @@ const useFetch = url => {
   async function fetchData() {
     const response = await fetch("/pratiques");
     const json = await response.json();
-    json.sort(function(a,b){if(a.Jour.localeCompare(b.Jour)==0){return ( a.Debut.localeCompare(b.Debut));}else{return (a.Jour>b.Jour);};});
+    json.sort(function(a,b){if(a.Jour.localeCompare(b.Jour)==0){return ( a.Debut.localeCompare(b.Debut));}else{return (a.Jour.localeCompare(b.Jour));};});
     setData(json);
     setLoadingP(false);  
   }
@@ -133,7 +133,7 @@ aujourdhui.setMilliseconds(0);
                   key=>(new Date(pratiques.Jour)>=aujourdhui||inclusAncien)).length>0)).map(pratiques => 
                 (
 
-                  <TableRow >
+                  <TableRow key={pratiques.id} >
                     <TableCell component="th" scope="row">
                       {pratiques.id}
                     </TableCell>
