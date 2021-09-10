@@ -133,7 +133,7 @@ aujourdhui.setMilliseconds(0);
                   key=>(new Date(pratiques.Jour)>=aujourdhui||inclusAncien)).length>0)).map(pratiques => 
                 (
 
-                  <TableRow key={pratiques.id} >
+                  <TableRow >
                     <TableCell component="th" scope="row">
                       {pratiques.id}
                     </TableCell>
