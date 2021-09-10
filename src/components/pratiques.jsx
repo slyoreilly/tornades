@@ -117,7 +117,7 @@ aujourdhui.setMilliseconds(0);
             <Table  size="small">
               <TableHead>
                 <TableRow>
-                  <TableCell onClick={()=>{data.sort((a,b)=>{return ((data.id+"").localeCompare(data.id))});}}>No</TableCell>
+                  <TableCell >No</TableCell>
                   <TableCell align="right" >Jour</TableCell>
                   <TableCell align="right" >Date</TableCell>
                   <TableCell align="right">Équipes</TableCell>
