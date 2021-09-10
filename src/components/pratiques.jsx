@@ -121,7 +121,8 @@ aujourdhui.setMilliseconds(0);
                   <TableCell align="right" >Jour</TableCell>
                   <TableCell align="right" >Date</TableCell>
                   <TableCell align="right">Équipes</TableCell>
-                  <TableCell align="right">Heure</TableCell>
+                  <TableCell align="right">Heure début</TableCell>
+                  <TableCell align="right">Heure Fin</TableCell>
                 </TableRow>
 
               </TableHead>
@@ -151,6 +152,7 @@ aujourdhui.setMilliseconds(0);
 
                     </TableCell>
                     <TableCell align="right">{pratiques.Debut.split(':')[0]+":"+pratiques.Debut.split(':')[1]}</TableCell>
+                    <TableCell align="right">{pratiques.Fin.split(':')[0]+":"+pratiques.Fin.split(':')[1]}</TableCell>
                   </TableRow>
               
                     ))}
