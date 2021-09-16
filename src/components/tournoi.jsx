@@ -40,6 +40,22 @@ function Tournoi() {
 
     return (
       <Container className={isMobile?"conteneur-tournoi-mobile":"conteneur-tournoi"}>
+
+<Paper style={stylePaper}>
+           <Typography variant="h2">Tournoi Peewee / Bantam 2021 d'AHMV</Typography>
+<p>L'édition 2021 de notre tournoi Peewee / Bantam est en cours de préparation.
+Elle se déroulera du 6 décembre au 19 décembre 2021</p>
+
+
+<p>Encore une fois cette année, vos jeunes partiront non seulement avec la tête pleine de souvenir, mais aussi avec de beaux souvenir en vidéos ;-)</p>
+
+<p>Ça vous intéresse? Contactez-nous via <a href="mailto: ahmvtornade@hotmail.com">ce lien</a></p>
+
+
+
+<p>Merci,
+La direction d'AHM Villeray. </p>  
+</Paper>
         	 <Paper style={stylePaper}>
            <Typography variant="h2">Tournoi Peewee / Bantam 2019 d'AHMV</Typography>
 <p>L'édition 2019 de notre tournoi Peewee / Bantam,
@@ -48,12 +64,10 @@ s'est déroulé du 2 au 15 décembre 2019.</p>
 
 <h4>Nous avons eu une belle nouveauté cette année, tous les matchs ont été filmés!</h4>
 
-<p>Pour voir les faits saillants de vos cliquer sur <a href="http://syncstats.live/calendar/928">ce lien</a></p>
+<p>Pour voir les faits saillants de vos cliquer sur <a href="https://syncstats.live/home/calendar/119">ce lien</a></p>
 
 <p>Pour plus d'informations, veuillez entrer en communication avec nous.</p>
 
-<p>Merci,
-La direction d'AHM Villeray. </p>  
 </Paper>
 
         </Container>
