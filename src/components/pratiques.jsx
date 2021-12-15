@@ -19,7 +19,9 @@ const useFetch = url => {
   const [data, setData] = useState(null);
   const [loadingP, setLoadingP] = useState(true);
   const [loadingE, setLoadingE] = useState(true);
+  const [loadingA, setLoadingA] = useState(true);
   const [equipes, setEquipes] = useState(null);
+  const [arenas, setArenas] = useState(null);
 
   async function fetchData() {
     const response = await fetch("/pratiques");
@@ -34,13 +36,21 @@ const useFetch = url => {
       setEquipes(json);
       setLoadingE(false);  
     }
+    async function fetchDataArenas() {
+      const response = await fetch("/arenas");
+      const json = await response.json();
+      setArenas(json);
+      setLoadingA(false);  
+    }
+
 
   useEffect(() => {
     fetchData()
     fetchDataEquipes()
+    fetchDataArenas()
   }, []);
 
-  return {loadingP,loadingE,data,equipes};
+  return {loadingP,loadingE,data,equipes,arenas};
 };
 const useStyles = makeStyles({
 
@@ -54,7 +64,7 @@ function Pratiques() {
       
       }
 
- const {loadingP,loadingE,data,equipes} = useFetch();
+ const {loadingP,loadingE,data,equipes,arenas} = useFetch();
  //const {equipes} = useFetchEquipes("/equipes");
  const selectRef = useRef(0);
  const [selEquipe, setSelEquipe] = useState(0);
@@ -117,12 +127,13 @@ aujourdhui.setMilliseconds(0);
             <Table  size="small">
               <TableHead>
                 <TableRow>
-                  <TableCell >No</TableCell>
+                
                   <TableCell align="right" >Jour</TableCell>
                   <TableCell align="right" >Date</TableCell>
                   <TableCell align="right">Équipes</TableCell>
-                  <TableCell align="right">Heure début</TableCell>
-                  <TableCell align="right">Heure Fin</TableCell>
+                  <TableCell align="right">Début</TableCell>
+                  <TableCell align="right">Fin</TableCell>
+                  <TableCell align="right">Aréna</TableCell>
                 </TableRow>
 
               </TableHead>
@@ -135,9 +146,7 @@ aujourdhui.setMilliseconds(0);
                 (
 
                   <TableRow key={pratiques.id} >
-                    <TableCell component="th" scope="row">
-                      {pratiques.id}
-                    </TableCell>
+                    
                     <TableCell align="right">{joursSemaine[new Date(pratiques.Jour).getDay()]}</TableCell>
                     <TableCell align="right">{new Date(pratiques.Jour ).toLocaleDateString("fr-CA",optionsDate)}</TableCell>
                     <TableCell align="right">
@@ -153,6 +162,9 @@ aujourdhui.setMilliseconds(0);
                     </TableCell>
                     <TableCell align="right">{pratiques.Debut.split(':')[0]+":"+pratiques.Debut.split(':')[1]}</TableCell>
                     <TableCell align="right">{pratiques.Fin.split(':')[0]+":"+pratiques.Fin.split(':')[1]}</TableCell>
+                    <TableCell  align="right">
+                      {pratiques.arena==null?"---":pratiques.arena.Nom}
+                    </TableCell>
                   </TableRow>
               
                     ))}
