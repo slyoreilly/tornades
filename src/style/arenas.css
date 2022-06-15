@@ -13,7 +13,7 @@
         margin:0;
         min-height:100vh;
         width:100%;
-        background-image: url("/howie.jpg");
+        background-image: url("../../public/howie.jpg");
         background-repeat:no-repeat;
         background-attachment:fixed;
         background-size:120vw 120vh;
@@ -30,7 +30,7 @@
         margin-top: 80;
         padding-top: 50;
         margin:0;
-        background-image: url("/howie.jpg");
+        background-image: url("../../public/howie.jpg");
         background-repeat:no-repeat;
         background-attachment:fixed;
         background-size:cover;

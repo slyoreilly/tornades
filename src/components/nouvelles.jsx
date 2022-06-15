@@ -13,7 +13,7 @@ import Container from '@material-ui/core/Container';
 import 'typeface-dosis';
 //import { MarkdownPreview } from 'react-marked-markdown'
 import parse from "html-react-parser";
-import  marked from 'marked';
+import {marked} from 'marked';
 
 const NavTabsWidth = 100;
 
