@@ -187,18 +187,15 @@ return (
     <Container >
       <Grid container spacing={8}>
         <Grid container item xs={12} spacing={2}>
-        <h4 style={titreSection}> Inclusions </h4></Grid>
-        </Grid>
-        <Grid container item xs={12} md={6} spacing={2}>
-          <Grid item xs={12} >
-            <h4 style={titreSection}> Nouvelle procédure! </h4>
+        <Grid item xs={12} >
+        <h4>  Les inscriptions 2022-2023 sont ouvertes! </h4>
             <Card >
 
               <CardActionArea>
 
                 <CardContent>
                   <div>{"À partir de maintenant, les inscriptions se font directement sur le site de Hockey Canada. C'est plus simple et plus sécuritaire! Cliquez sur ce lien pour aller directement au bon endroit:"}</div>
-                  <Link href="https://page.hockeycanada.ca/page/hc/hq/hockey-quebec-region-montreal/ahm-de-villeray/participant/1ecdeb07-c80c-6f06-8d67-02f1899482f4">Page d'inscription</Link>
+                  <Link href="https://page.hockeycanada.ca/page/hc/hq/hockey-quebec-region-montreal/ahm-de-villeray/participant/1ecdeb07-c80c-6f06-8d67-02f1899482f4"><h3 style={titreSection}> Page d'inscription</h3></Link>
 
                 </CardContent>
               </CardActionArea>
@@ -206,9 +203,11 @@ return (
             
             
           </Grid>
+        </Grid>
+        <Grid container item xs={12} md={6} spacing={2}>
+        <Grid item xs={12} >
+        <h4 style={titreSection}> Inclusions </h4>
 
-
-          <Grid item xs={12} >
 
             <Card >
 
@@ -263,8 +262,7 @@ return (
         </Grid>
         <Grid container item xs={12} md={6} spacing={(5, 2)}>
           <Grid item xs={12}>
-            <h4 style={titreSection}>Prix</h4> </Grid>
-          <Grid item xs={12}>
+            <h4 style={titreSection}>Prix</h4> 
 
             <Card >
 
@@ -312,7 +310,7 @@ return (
 
             </Card>
 
-
+            </Grid>
           </Grid>
         </Grid>
 
