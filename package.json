@@ -15,7 +15,7 @@
     "@mui/material": "^5.8.4",
     "@mui/styles": "^5.8.4",
     "@types/react-highcharts": "^16.0.2",
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "dotenv": "^8.2.0",
     "html-react-parser": "^0.13.0",
     "i18next": "^19.6.2",
