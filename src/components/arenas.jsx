@@ -37,7 +37,7 @@ function Arenas() {
   
     const isMobile =  size.height > size.width;
 
-    const {loading,data} = useFetch("/arenas");
+    const {loading,data} = useFetch("/api/arenas");
 
     return (
       <Container className={isMobile?"conteneur-arena-mobile":"conteneur-arena"}>

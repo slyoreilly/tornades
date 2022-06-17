@@ -24,20 +24,20 @@ const useFetch = url => {
   const [arenas, setArenas] = useState(null);
 
   async function fetchData() {
-    const response = await fetch("/pratiques");
+    const response = await fetch("/api/pratiques");
     const json = await response.json();
     json.sort(function(a,b){if(a.Jour.localeCompare(b.Jour)==0){return ( a.Debut.localeCompare(b.Debut));}else{return (a.Jour.localeCompare(b.Jour));};});
     setData(json);
     setLoadingP(false);  
   }
     async function fetchDataEquipes() {
-      const response = await fetch("/equipes");
+      const response = await fetch("/api/equipes");
       const json = await response.json();
       setEquipes(json);
       setLoadingE(false);  
     }
     async function fetchDataArenas() {
-      const response = await fetch("/arenas");
+      const response = await fetch("/api/arenas");
       const json = await response.json();
       setArenas(json);
       setLoadingA(false);  

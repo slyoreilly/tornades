@@ -89,7 +89,7 @@ paddingTop:'1rem'
 
 }
 
- let {loading,data} = useFetch("/nouvelles");
+ let {loading,data} = useFetch("/api/nouvelles");
  const classes = useStyles();
 
  function handleClick(nouvelle){

@@ -31,10 +31,13 @@ const useFetch = url => {
     const response = await fetch(url);
     const json = await response.json();
     json.sort((a,b)=>{return ((b.created_at).localeCompare(a.created_at))});
+/*    console.log("yo "+response.headers);*/
     setData(json);
-    setLoading(false)  }
+   setLoading(false);  
+  }
 
   useEffect(() => {
+    console.log("test "+url);
     fetchData()
   }, []);
 
@@ -72,7 +75,7 @@ const useFetch = url => {
     const handleWindowSizeChange = () => {
       setSize({ width: window.innerWidth, height: window.innerHeight });
     };
-    let {loading,data} = useFetch("/nouvelles");
+    let {loading,data} = useFetch("/api/nouvelles");
     return (
         <Container maxWidth={false} className={isMobile?"conteneur-accueil-mobile":"conteneur-accueil"}> 
          <Grid container spacing={5} >
@@ -83,7 +86,7 @@ const useFetch = url => {
           
           </Grid>
 
-         
+          
 
           <Grid container spacing={5}>
           <Grid item xs={12} md={3} >

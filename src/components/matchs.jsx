@@ -17,7 +17,7 @@ const useFetch = url => {
   const [loading, setLoading] = useState(true);
 
     async function fetchData() {
-      const response = await fetch("/equipes");
+      const response = await fetch("/api/equipes");
       const json = await response.json();
       setData(json);
       setLoading(false);  
