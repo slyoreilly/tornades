@@ -203,6 +203,54 @@ return (
             
             
           </Grid>
+          <Grid item xs={12} >
+          <h4> Utile à savoir pour l'inscription... </h4>
+            <Card >
+
+              <CardActionArea>
+
+                <CardContent>
+                <List dense>
+
+
+<ListItem>
+  <ListItemText
+    primary="Contactez-nous si vous éprouvez des problèmes" secondary={<Link href="mailto:ahmvtornade@hotmail.com">ahmvtornade@hotmail.com</Link>}
+  />
+  
+
+</ListItem>
+<ListItem>
+  <ListItemText
+    primary="Si votre enfant a déjà joué avec nous (ou une autre équipe), vous devrez rechercher son nom dans la base de données." secondary="Vous devrez aussi indiquer sa date de naissance dans le cadre de la recherche."
+  />
+</ListItem>
+<ListItem>
+  <ListItemText
+    primary="Une fois démarré, terminez le processus car la session n'est pas enregistrée si vous interrompez."
+  />
+</ListItem>
+<ListItem>
+ <ListItemText
+    primary="Vous n'avez pas à payer immédiatement, vous pourrez régler les frais d'inscription au début de la prochaine saison. " secondary="Comme à l'habitude"
+  />
+ 
+</ListItem>
+<ListItem>
+  <ListItemText
+    primary="Si vous avez plusieurs enfants, inscrivez-les en même temps pour profiter du rabais multi-enfants." secondary="Sinon, on pourra toujours le faire après coup."
+  />
+</ListItem>
+
+
+</List>
+
+                </CardContent>
+              </CardActionArea>
+            </Card >
+            
+            
+          </Grid>
         </Grid>
         <Grid container item xs={12} md={6} spacing={2}>
         <Grid item xs={12} >
