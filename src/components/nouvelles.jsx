@@ -119,7 +119,7 @@ paddingTop:'1rem'
                       <CardActionArea className={isMobile?classes.rootMobile:classes.root}>
                         <CardMedia
                           className={isMobile?classes.mediaMobile:classes.media}
-                          image={""+nouvelle.Visuel[0].url}
+                          image={ nouvelle.Visuel.length>0 ? ""+nouvelle.Visuel[0].url : "../shared/tornades.png" }
                           title={nouvelle.Titre}
                         />
                         <CardContent
