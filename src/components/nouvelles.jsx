@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
+import logo from '../shared/tornades.png';
 import 'typeface-dosis';
 //import { MarkdownPreview } from 'react-marked-markdown'
 import parse from "html-react-parser";
@@ -95,7 +96,7 @@ paddingTop:'1rem'
  function handleClick(nouvelle){
  /* nouvelle.viewMode =nouvelle.viewMode?0:1;
    forceUpdate(n => !n)
-  */
+  *///
  }
 
     return (<Container maxWidth={false}>
@@ -119,7 +120,7 @@ paddingTop:'1rem'
                       <CardActionArea className={isMobile?classes.rootMobile:classes.root}>
                         <CardMedia
                           className={isMobile?classes.mediaMobile:classes.media}
-                          image={ nouvelle.Visuel.length>0 ? ""+nouvelle.Visuel[0].url : "../shared/tornades.png" }
+                          image={ nouvelle.Visuel.length>0 ? ""+nouvelle.Visuel[0].url : logo }
                           title={nouvelle.Titre}
                         />
                         <CardContent

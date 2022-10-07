@@ -9,6 +9,14 @@ module.exports = function(app) {
       changeOrigin: true,
     })
   );  
+  app.use(
+    createProxyMiddleware(
+    '/uploads',
+    {
+      target: 'http://localhost:1337',
+      changeOrigin: true,
+    })
+  );  
 };
 
 
