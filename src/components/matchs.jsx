@@ -82,14 +82,15 @@ function Matchs() {
            
              {  data.map(equipe => 
               (
-
+                
+                equipe.PageMatchHM==null? null :
                 <TableRow key={equipe.id} >
                   <TableCell component="th" scope="row">
                     {equipe.id}
                   </TableCell>
                   <TableCell   onChange={()=>{fetch(equipe.PageMatchHM)}} align="right"><a href={equipe.PageMatchHM} target="_blank">{equipe.Nom}</a></TableCell>
                 </TableRow>
-            
+                
                   ))}
             </TableBody>
           </Table>
