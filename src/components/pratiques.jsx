@@ -89,11 +89,11 @@ aujourdhui.setSeconds(0);
 aujourdhui.setMilliseconds(0);
 
     return (
-<Container>
+      <Container>
         
           {loadingP||loadingE? <div>Loading...</div> :
             <Paper style={divPrincipale}>
-           
+           <Container>
             <Typography variant="h2">Pratiques</Typography>
             <span>Choisir votre équipe:</span>
                 <select ref={selectRef} selected onChange={()=>{setSelEquipe(selectRef.current.value);console.log(selectRef.current.value)}} >
@@ -108,22 +108,22 @@ aujourdhui.setMilliseconds(0);
                 
                 <label>
 
-<input
+                  <input
 
-  type="checkbox"
+                    type="checkbox"
 
-  defaultChecked={false}
+                    defaultChecked={false}
 
-  onClick={()=>{
+                    onClick={()=>{
 
-    setInclusAncien(!inclusAncien);
-  console.log("Maintenant: "+maintenant);
-  console.log("Auj:" +aujourdhui);
-  }}
+                      setInclusAncien(!inclusAncien);
+                    console.log("Maintenant: "+maintenant);
+                    console.log("Auj:" +aujourdhui);
+                    }}
 
-/> Afficher les anciennes pratiques
+                  /> Afficher les anciennes pratiques
 
-</label>
+                  </label>
             <Table  size="small">
               <TableHead>
                 <TableRow>
@@ -170,11 +170,13 @@ aujourdhui.setMilliseconds(0);
                     ))}
               </TableBody>
             </Table>
+            </Container>
             </Paper>
             }
           
 
         </Container>
+
       );
 
     }

@@ -30,7 +30,7 @@ const NavTabs = ({ history, ...props }) => {
     const { isMobile } = props;
     //const classes = useStyles(props.theme);
     const [value, setValue] = React.useState(0);
-    const [langue, setLangue] = React.useState('en');
+    const [langue, setLangue] = React.useState('fr');
     const { t, i18n } = useTranslation('NavTabs');
     const [cookies, setCookie] = useCookies(["jeton","user"]);
     console.log("cookiesUser"+cookies.user);

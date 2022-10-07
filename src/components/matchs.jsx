@@ -87,7 +87,7 @@ function Matchs() {
                   <TableCell component="th" scope="row">
                     {equipe.id}
                   </TableCell>
-                  <TableCell   onChange={()=>{fetch(equipe.pageMatchHM)}} align="right"><a href={equipe.pageMatchHM} target="_blank">{equipe.Nom}</a></TableCell>
+                  <TableCell   onChange={()=>{fetch(equipe.PageMatchHM)}} align="right"><a href={equipe.PageMatchHM} target="_blank">{equipe.Nom}</a></TableCell>
                 </TableRow>
             
                   ))}
