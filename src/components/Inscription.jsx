@@ -195,7 +195,7 @@ return (
 
                 <CardContent>
                   <div>{"À partir de maintenant, les inscriptions se font directement sur le site de Hockey Canada. C'est plus simple et plus sécuritaire! Cliquez sur ce lien pour aller directement au bon endroit:"}</div>
-                  <Link href="https://page.hockeycanada.ca/page/hc/hq/hockey-quebec-region-montreal/ahm-de-villeray/participant/1ecdeb07-c80c-6f06-8d67-02f1899482f4"><h3 style={titreSection}> Page d'inscription</h3></Link>
+                  <Link href="https://page.hockeycanada.ca/page/hc/hq/hockey-quebec-region-montreal/ahm-de-villeray/participant"><h3 style={titreSection}> Page d'inscription</h3></Link>
 
                 </CardContent>
               </CardActionArea>
