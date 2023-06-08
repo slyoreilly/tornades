@@ -188,7 +188,7 @@ return (
       <Grid container spacing={8}>
         <Grid container item xs={12} spacing={2}>
         <Grid item xs={12} >
-        <h4>  Les inscriptions 2022-2023 sont ouvertes! </h4>
+        <h4>  Les inscriptions 2023-2024 sont ouvertes! </h4>
             <Card >
 
               <CardActionArea>
