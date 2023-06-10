@@ -322,32 +322,32 @@ return (
 
                     <ListItem>
                       <ListItemText
-                        primary="M7 (Pré-novice): 150$" secondary="2016-2017-2018"
+                        primary="M7 (Pré-novice): 150$" secondary="2017-2018-2019-2020"
                       />
                     </ListItem>
                     <ListItem>
                       <ListItemText
-                        primary="M9 (Novice): 300$" secondary="2014-2015"
+                        primary="M9 (Novice): 300$" secondary="2015-2016"
                       />
                     </ListItem>
                     <ListItem>
                       <ListItemText
-                        primary="M11 (Atome): 300$" secondary="2012-2013"
+                        primary="M11 (Atome): 300$" secondary="2013-2014"
                       />
                     </ListItem>
                     <ListItem>
                       <ListItemText
-                        primary="M13 (Peewee): 300$" secondary="2010-2011"
+                        primary="M13 (Peewee): 300$" secondary="2011-2012"
                       />
                     </ListItem>
                     <ListItem>
                       <ListItemText
-                        primary="M15 (Bantam): 300$" secondary="2008-2009"
+                        primary="M15 (Bantam): 300$" secondary="2009-2010"
                       />
                     </ListItem>
                     <ListItem>
                       <ListItemText
-                        primary="M18 (Midget): 350$" secondary="2005-2006-2007"
+                        primary="M18 (Midget): 350$" secondary="2006-2007-2008"
                       />
                     </ListItem>
 
