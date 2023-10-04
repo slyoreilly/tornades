@@ -24,7 +24,7 @@ const useFetch = url => {
   const [arenas, setArenas] = useState(null);
 
   async function fetchData() {
-    const response = await fetch("/api/pratiques");
+    const response = await fetch("/api/pratiques?_limit=100&_sort=Jour:ASC");
     const json = await response.json();
     json.sort(function(a,b){if(a.Jour.localeCompare(b.Jour)==0){return ( a.Debut.localeCompare(b.Debut));}else{return (a.Jour.localeCompare(b.Jour));};});
     setData(json);
