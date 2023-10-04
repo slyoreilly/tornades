@@ -322,7 +322,7 @@ return (
 
                     <ListItem>
                       <ListItemText
-                        primary="M7 (Pré-novice): 150$" secondary="2017-2018-2019-2020"
+                        primary="M7 (Pré-novice): 99$" secondary="2017-2018-2019-2020"
                       />
                     </ListItem>
                     <ListItem>

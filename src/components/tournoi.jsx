@@ -42,9 +42,11 @@ function Tournoi() {
       <Container className={isMobile?"conteneur-tournoi-mobile":"conteneur-tournoi"}>
 
 <Paper style={stylePaper}>
-           <Typography variant="h2">Tournoi Peewee / Bantam 2022 d'AHMV</Typography>
+           <Typography variant="h2">Tournoi Peewee / Bantam 2023 d'AHMV</Typography>
 <p>L'édition 2022 de notre tournoi Peewee / Bantam est en cours de préparation.
-Elle se déroulera du 5 décembre au 18 décembre 2022</p>
+Elle se déroulera du 4 décembre au 17 décembre 2023</p>
+
+<p>Nouveauté cette année, nous incluons du M13C! C'est donc dire que nous accueillerons tous les M13 et M15 simple lettre.</p>
 
 
 <p>Encore une fois cette année, vos jeunes partiront non seulement avec la tête pleine de souvenir, mais aussi avec de beaux souvenir en vidéos ;-)</p>
