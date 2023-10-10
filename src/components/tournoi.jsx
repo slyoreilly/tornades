@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import '../style/tournoi.css';
+import TournoiALaRonde from './TournoiALaRonde';
 import { Container } from '@material-ui/core';
 import  Paper  from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-
+import '../style/tournoi.css';
 
 function Tournoi() {
 
@@ -43,11 +43,13 @@ function Tournoi() {
 
 <Paper style={stylePaper}>
            <Typography variant="h2">Tournoi Peewee / Bantam 2023 d'AHMV</Typography>
-<p>L'édition 2022 de notre tournoi Peewee / Bantam est en cours de préparation.
+<p>L'édition 2023 de notre tournoi Peewee / Bantam est en cours de préparation.
 Elle se déroulera du 4 décembre au 17 décembre 2023</p>
+
 
 <p>Nouveauté cette année, nous incluons du M13C! C'est donc dire que nous accueillerons tous les M13 et M15 simple lettre.</p>
 
+<TournoiALaRonde></TournoiALaRonde>
 
 <p>Encore une fois cette année, vos jeunes partiront non seulement avec la tête pleine de souvenir, mais aussi avec de beaux souvenir en vidéos ;-)</p>
 
