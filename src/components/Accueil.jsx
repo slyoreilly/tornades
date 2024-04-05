@@ -13,8 +13,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import parse from "html-react-parser";
 import {marked} from 'marked';
+import plainte1 from '../shared/logo_plainte_vert.png'
+import plainte2 from '../shared/logo_plainte_orange.png'
 const NavTabsWidth = 100;
 
 function Accueil() {
@@ -61,6 +64,13 @@ const useFetch = url => {
     const carteMedia = {
       height:'15rem'
     }
+
+    const plainte = {
+      width: '100%',
+      height: '15rem',
+      objectFit: 'contain',
+    }
+
     const carte = {
       opacity:'0.8'
     }
@@ -143,10 +153,21 @@ La direction d’AHMV
 
  </Grid>
  <Grid container spacing={5}>
-          <Grid item xs={12} >
-          <Paper className="paperFull">
-          Nous avons bien hâte de revoir tous nos joueurs, bénévoles et parents.
-            </Paper>
+          <Grid item xs={12} sm={6} md={3} lg={2}  xl={2} >
+          <a href="https://alias-solution.com/contact/fr/ls41" target="_blank" rel="noopener noreferrer">
+                      <CardMedia
+                        style={carteMedia}
+                        image={plainte1}
+                      />
+                    </a>
+                    </Grid>
+                    <Grid item xs={12} sm={6} md={3} lg={2}  xl={2}>
+                    <a href="https://alias-solution.com/contact/fr/af41" target="_blank" rel="noopener noreferrer">
+                      <CardMedia
+                        style={plainte}
+                        image={plainte2}
+                      />
+                    </a>
           </Grid>
           </Grid>
         </Container>
