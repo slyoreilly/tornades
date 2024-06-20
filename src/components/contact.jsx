@@ -45,9 +45,9 @@ function Contact() {
 
         <div style={divPrincipale}>
           <p>
-  <b>Président :</b> M. P. Malkassoff </p>
+  <b>Président :</b> M. Sylvain O'Reilly </p>
   <p>
-president@ahmvtornade.com</p>
+ahmvtornade@hotmail.com</p>
   <p>
 Pour toute information ou pour prendre un rendez-vous, écrire un courriel avec la personne désirée et un choix de jours et d’heures pour céduler une rencontre.
 </p>
