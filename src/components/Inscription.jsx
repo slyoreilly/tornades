@@ -188,13 +188,13 @@ return (
       <Grid container spacing={8}>
         <Grid container item xs={12} spacing={2}>
         <Grid item xs={12} >
-        <h4>  Les inscriptions 2023-2024 sont ouvertes! </h4>
+        <h4>  Les inscriptions 2024-2025 sont ouvertes! </h4>
             <Card >
 
               <CardActionArea>
 
                 <CardContent>
-                  <div>{"À partir de maintenant, les inscriptions se font directement sur le site de Hockey Canada. C'est plus simple et plus sécuritaire! Cliquez sur ce lien pour aller directement au bon endroit:"}</div>
+                  <div>{"Les inscriptions se font directement sur le site de Hockey Canada. Cliquez sur ce lien pour aller directement au bon endroit:"}</div>
                   <Link href="https://page.hockeycanada.ca/page/hc/hq/hockey-quebec-region-montreal/ahm-de-villeray/participant"><h3 style={titreSection}> Page d'inscription</h3></Link>
 
                 </CardContent>
@@ -322,32 +322,32 @@ return (
 
                     <ListItem>
                       <ListItemText
-                        primary="M7 (Pré-novice): 99$" secondary="2017-2018-2019-2020"
+                        primary="M7 (Pré-novice): 99$" secondary="2018-2019-2020-2021"
                       />
                     </ListItem>
                     <ListItem>
                       <ListItemText
-                        primary="M9 (Novice): 300$" secondary="2015-2016"
+                        primary="M9 (Novice): 325$" secondary="2016-2017"
                       />
                     </ListItem>
                     <ListItem>
                       <ListItemText
-                        primary="M11 (Atome): 300$" secondary="2013-2014"
+                        primary="M11 (Atome): 325$" secondary="2014-2015"
                       />
                     </ListItem>
                     <ListItem>
                       <ListItemText
-                        primary="M13 (Peewee): 300$" secondary="2011-2012"
+                        primary="M13 (Peewee): 325$" secondary="2012-2013"
                       />
                     </ListItem>
                     <ListItem>
                       <ListItemText
-                        primary="M15 (Bantam): 300$" secondary="2009-2010"
+                        primary="M15 (Bantam): 325$" secondary="2010-2011"
                       />
                     </ListItem>
                     <ListItem>
                       <ListItemText
-                        primary="M18 (Midget): 350$" secondary="2006-2007-2008"
+                        primary="M18 (Midget): 375$" secondary="2007-2008-2009"
                       />
                     </ListItem>
 
