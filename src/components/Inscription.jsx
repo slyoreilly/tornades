@@ -16,8 +16,11 @@ import ListItemText from '@mui/material/ListItemText';
 import { useTranslation } from 'react-i18next';
 import Cookies from 'universal-cookie';
 import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
+import logoTimBits from '../shared/AW_TH TimBits Hockey_110718.png'
+import logoTim from '../shared/th-logo2018.png'
 
 
 
@@ -37,16 +40,6 @@ function useInput(initialValue) {
   function handleChange(e) { setValue(e.target.value); }
   return [value, handleChange];
 }
-
-const listeErreurs = [
-  "Le numéro civique doit être un nombre",
-  "Le Code Postal est invalide",
-  "L'adresse courriel est invalide",
-  "Le nom ne peut être nul",
-  "Le prénom ne peut être nul",
-  "La date de naissance est obligatoire",
-
-]
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,8 +80,12 @@ const useStyles = makeStyles((theme) => ({
   },
   texteErreur: {
     color: theme.palette.error,
-  },
+    },
 
+    logoTH: {
+        height: '10rem',
+        width: '100%',
+    }
 }));
 
 
@@ -103,39 +100,6 @@ function Inscription(props) {
   }, []);
 
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const [Prenom, setPrenom] = useInput('');
-  const [Nom, setNom] = useInput('');
-  const [Sexe, setSexe] = useInput('');
-  const [AdresseNo, setAdresseNo] = useInput('');
-  const [Rue, setRue] = useInput('');
-  const [CodePostal, setCodePostal] = useInput('');
-  const [DateDeNaissance, setDateDeNaissance] = useInput('');
-  const [PrenomParent1, setPrenomParent1] = useInput('');
-  const [PremiereFois, setPremiereFois] =  React.useState(false);
-  const [NomParent1, setNomParent1] = useInput('');
-  const [TelephoneParent1, setTelephoneParent1] = useInput('');
-  const [CourrielParent1, setCourrielParent1] = useInput('');
-  const [ImpliqueParent1, setImpliqueParent1] = React.useState(false);
-  const [PrenomParent2, setPrenomParent2] = useInput('');
-  const [NomParent2, setNomParent2] = useInput('');
-  const [TelephoneParent2, setTelephoneParent2] = useInput('');
-  const [CourrielParent2, setCourrielParent2] = useInput('');
-  const [ImpliqueParent2, setImpliqueParent2] =  React.useState(false);
-  const [PrenomUrgence, setPrenomUrgence] = React.useState('');
-  const [NomUrgence, setNomUrgence] = React.useState('');
-  const [TelephoneUrgence, setTelephoneUrgence] = React.useState('');
-  const [CourrielImpots, setCourrielImpots] = useInput('');
-  const [Commentaires, setCommentaires] = useInput('');
-  const [JouerAutreEquipe, setJouerAutreEquipe] = React.useState(false);
-  const [DerniereEquipe, setDerniereEquipe] =  useInput('');
-  const [AnneeDerniereEquipe, setAnneeDerniereEquipe] = useInput('');
-  const [copieParent, setCopieParent] = React.useState('0');
-  const [estConfirme, setEstConfirme] = React.useState(false);
-  const [estErreurConfirme, setEstErreurConfirme] = React.useState(false);
-  const [erreurs, setErreurs] = React.useState([]);
-
-
 
   useEffect(() => {
     handleWindowSizeChange();
@@ -156,24 +120,16 @@ function Inscription(props) {
     margin: 'auto'
 
   }
-  const styleForme = {
-    marginTop: 80,
-    paddingTop: 80,
-    textAlign: "left",
-  }
-  const inputBox = {
-    textAlign: 'right',
-    float: 'right',
-
-  }
 
   const titreSection = {
     textAlign: 'center',
-  }
+    }
 
-
-
-
+    const logoTH = {
+      backgroundSize:'contain',
+      height:'10rem',
+      width: '100%',
+    }
 
   function changeLangue(lang) {
     var cookie = new Cookies();
@@ -213,37 +169,37 @@ return (
                 <List dense>
 
 
-<ListItem>
-  <ListItemText
-    primary="Contactez-nous si vous éprouvez des problèmes" secondary={<Link href="mailto:ahmvtornade@hotmail.com">ahmvtornade@hotmail.com</Link>}
-  />
+                <ListItem>
+                  <ListItemText
+                    primary="Contactez-nous si vous éprouvez des problèmes" secondary={<Link href="mailto:ahmvtornade@hotmail.com">ahmvtornade@hotmail.com</Link>}
+                  />
   
 
-</ListItem>
-<ListItem>
-  <ListItemText
-    primary="Si votre enfant a déjà joué avec nous (ou une autre équipe), vous devrez rechercher son nom dans la base de données." secondary="Vous devrez aussi indiquer sa date de naissance dans le cadre de la recherche."
-  />
-</ListItem>
-<ListItem>
-  <ListItemText
-    primary="Une fois démarré, terminez le processus car la session n'est pas enregistrée si vous interrompez."
-  />
-</ListItem>
-<ListItem>
- <ListItemText
-    primary="Vous n'avez pas à payer immédiatement, vous pourrez régler les frais d'inscription au début de la prochaine saison. " secondary="Comme à l'habitude"
-  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Si votre enfant a déjà joué avec nous (ou une autre équipe), vous devrez rechercher son nom dans la base de données." secondary="Vous devrez aussi indiquer sa date de naissance dans le cadre de la recherche."
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Une fois démarré, terminez le processus car la session n'est pas enregistrée si vous interrompez."
+                  />
+                </ListItem>
+                <ListItem>
+                 <ListItemText
+                    primary="Vous n'avez pas à payer immédiatement, vous pourrez régler les frais d'inscription au début de la prochaine saison. " secondary="Comme à l'habitude"
+                  />
  
-</ListItem>
-<ListItem>
-  <ListItemText
-    primary="Si vous avez plusieurs enfants, inscrivez-les en même temps pour profiter du rabais multi-enfants." secondary="Sinon, on pourra toujours le faire après coup."
-  />
-</ListItem>
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Si vous avez plusieurs enfants, inscrivez-les en même temps pour profiter du rabais multi-enfants." secondary="Sinon, on pourra toujours le faire après coup."
+                  />
+                </ListItem>
 
 
-</List>
+                </List>
 
                 </CardContent>
               </CardActionArea>
@@ -322,7 +278,7 @@ return (
 
                     <ListItem>
                       <ListItemText
-                        primary="M7 (Pré-novice): 99$" secondary="2018-2019-2020-2021"
+                        primary="Timbits M7: 99$" secondary="2018-2019-2020-2021"
                       />
                     </ListItem>
                     <ListItem>
@@ -358,9 +314,35 @@ return (
 
             </Card>
 
-            </Grid>
-          </Grid>
+           </Grid>
         </Grid>
+
+                <Grid container spacing={2}>
+                    <Grid item xs={12}>
+                        <h4> Merci à Tim Hortons pour leur support auprès des tout-petits! </h4>
+                    </Grid>
+                            <Grid item xs={12} md={ 6}>
+                        <Card >
+
+                            <CardMedia
+                                style={logoTH}
+                                image={logoTim}
+                            />
+                        </Card>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <Card>
+                            <CardMedia
+                                image={logoTimBits}
+                                alt="TimBitsHouckey"
+                                style={logoTH}
+                            />
+                        </Card>
+
+
+                    </Grid>
+                </Grid>
+       </Grid>
 
     </Container>
 
