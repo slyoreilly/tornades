@@ -61,8 +61,8 @@ function Pratiques() {
   const paperStyle = {
     paddingTop: '1rem',
     width: '100%',
-    minHeight: '100vh', // Assure que le Paper occupe toute la hauteur de la fenêtre
-    paddingBottom: '4rem', // Ajoute un espace en bas pour le footer
+    minHeight: 'calc(100vh - 60px)', // Assure que le Paper occupe toute la hauteur disponible moins la hauteur du footer
+    paddingBottom: '60px', // Laisse de la place pour le footer
   };
 
   const { loadingP, loadingE, data, equipes, arenas } = useFetch();
