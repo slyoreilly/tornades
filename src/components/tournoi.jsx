@@ -42,8 +42,8 @@ function Tournoi() {
       <Container className={isMobile?"conteneur-tournoi-mobile":"conteneur-tournoi"}>
 
 <Paper style={stylePaper}>
-           <Typography variant="h2">Tournoi Peewee / Bantam 2023 d'AHMV</Typography>
-<p>L'édition 2023 de notre tournoi Peewee / Bantam est en cours de préparation.
+           <Typography variant="h2">Tournoi Peewee / Bantam 2024 d'AHMV</Typography>
+<p>L'édition 2024 de notre tournoi Peewee / Bantam est en cours de préparation.
 Elle se déroulera du 2 décembre au 15 décembre 2024</p>
 
 

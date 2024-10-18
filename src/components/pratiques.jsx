@@ -1,6 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
-import '../App.css';
-//import Checkbox from './Checkbox';
+import React, { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,178 +8,116 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import 'typeface-dosis';
-import { CheckBox } from '@material-ui/icons';
-const NavTabsWidth = 100;
-const joursSemaine = ["Dimanche","Lundi","Mardi","Mercredi","Jeudi","Vendredi","Samedi"]
 
-const useFetch = url => {
-  const [data, setData] = useState(null);
-  const [loadingP, setLoadingP] = useState(true);
-  const [loadingE, setLoadingE] = useState(true);
-  const [loadingA, setLoadingA] = useState(true);
-  const [equipes, setEquipes] = useState(null);
-  const [arenas, setArenas] = useState(null);
+// Les jours de la semaine pour le tableau
+const joursSemaine = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
 
-  async function fetchData() {
-    const response = await fetch("/api/pratiques?_limit=100&_sort=Jour:DESC");
-    const json = await response.json();
-    json.sort(function(a,b){if(a.Jour.localeCompare(b.Jour)==0){return ( a.Debut.localeCompare(b.Debut));}else{return (a.Jour.localeCompare(b.Jour));};});
-    setData(json);
-    setLoadingP(false);  
-  }
-    async function fetchDataEquipes() {
-      const response = await fetch("/api/equipes");
-      const json = await response.json();
-      setEquipes(json);
-      setLoadingE(false);  
-    }
-    async function fetchDataArenas() {
-      const response = await fetch("/api/arenas");
-      const json = await response.json();
-      setArenas(json);
-      setLoadingA(false);  
-    }
-
+const useFetch = () => {
+  const [data, setData] = useState([]);
+  const [equipes, setEquipes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchData()
-    fetchDataEquipes()
-    fetchDataArenas()
+    async function fetchData() {
+      const responsePratiques = await fetch("/api/pratiques?_limit=100&_sort=Jour:DESC");
+      const pratiques = await responsePratiques.json();
+      
+      const responseEquipes = await fetch("/api/equipes");
+      const equipes = await responseEquipes.json();
+
+      setData(pratiques);
+      setEquipes(equipes);
+      setLoading(false); // Le chargement est terminé
+    }
+    fetchData();
   }, []);
 
-  return {loadingP,loadingE,data,equipes,arenas};
+  return { loading, data, equipes };
 };
-const useStyles = makeStyles({
 
-});
-
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: '100%',
+    overflowX: 'auto',
+    backgroundColor: theme.palette.background.paper,
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    width: '100%',
+    padding: '1rem',
+  },
+  table: {
+    minWidth: 650,
+  },
+}));
 
 function Pratiques() {
-    
-    const divPrincipale= {
-      paddingTop:'1rem',
-      width:'100%',
-      height:'100%'
-      }
+  const classes = useStyles();
+  const { loading, data, equipes } = useFetch();
+  const [selEquipe, setSelEquipe] = useState(0);
+  const selectRef = useRef(null);
 
- const {loadingP,loadingE,data,equipes,arenas} = useFetch();
- //const {equipes} = useFetchEquipes("/equipes");
- const selectRef = useRef(0);
- const [selEquipe, setSelEquipe] = useState(0);
- const [inclusAncien, setInclusAncien] = useState(false);
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
- const options = {
-  hour12 : false,
-  hour:  "2-digit",
-  minute: "2-digit"
+  return (
+    <Container className={classes.container}>
+      <Paper className={classes.paper}>
+        <Typography variant="h2" gutterBottom>
+          Pratiques
+        </Typography>
+        <span>Choisir votre équipe:</span>
+        <select ref={selectRef} onChange={() => setSelEquipe(selectRef.current.value)}>
+          <option key={0} value={0}>Toutes</option>
+          {equipes.map(equipe => (
+            <option key={equipe.id} value={equipe.id}>
+              {equipe.Nom}
+            </option>
+          ))}
+        </select>
+
+        <Table className={classes.table} size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">Jour</TableCell>
+              <TableCell align="right">Date</TableCell>
+              <TableCell align="right">Équipes</TableCell>
+              <TableCell align="right">Début</TableCell>
+              <TableCell align="right">Fin</TableCell>
+              <TableCell align="right">Aréna</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map((pratique) => (
+              <TableRow key={pratique.id}>
+                <TableCell align="right">
+                  {joursSemaine[new Date(pratique.Jour).getDay()]}
+                </TableCell>
+                <TableCell align="right">
+                  {new Date(pratique.Jour).toLocaleDateString("fr-CA")}
+                </TableCell>
+                <TableCell align="right">
+                  {Object.values(pratique.equipes).map((equipe) => (
+                    <span key={equipe.id}>{equipe.Nom}<br/></span>
+                  ))}
+                </TableCell>
+                <TableCell align="right">{pratique.Debut}</TableCell>
+                <TableCell align="right">{pratique.Fin}</TableCell>
+                <TableCell align="right">
+                  {pratique.arena ? pratique.arena.Nom : "---"}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+    </Container>
+  );
 }
-
-const optionsDate = {
-  hour12 : false,
-}
-
-var heure = new Date().toLocaleTimeString("en-US",options);
-var  maintenant= new Date();
-var aujourdhui =maintenant;
-aujourdhui.setHours(0);
-aujourdhui.setMinutes(0);
-aujourdhui.setSeconds(0);
-aujourdhui.setMilliseconds(0);
-
-    return (
-      <Container>
-        
-          {loadingP||loadingE? <div>Loading...</div> :
-            <Paper style={divPrincipale}>
-           <Container>
-            <Typography variant="h2">Pratiques</Typography>
-            <span>Choisir votre équipe:</span>
-                <select ref={selectRef} selected onChange={()=>{setSelEquipe(selectRef.current.value);console.log(selectRef.current.value)}} >
-                <option key={0} value={0}>Toutes</option>
-                {equipes.map(equipe => 
-                (
-                <option key={equipe.id} value={equipe.id}>{equipe.Nom}</option>
-
-                ))}
-                </select>
-                <br/>
-                
-                <label>
-
-                  <input
-
-                    type="checkbox"
-
-                    defaultChecked={false}
-
-                    onClick={()=>{
-
-                      setInclusAncien(!inclusAncien);
-                    console.log("Maintenant: "+maintenant);
-                    console.log("Auj:" +aujourdhui);
-                    }}
-
-                  /> Afficher les anciennes pratiques
-
-                  </label>
-            <Table  size="small">
-              <TableHead>
-                <TableRow>
-                
-                  <TableCell align="right" >Jour</TableCell>
-                  <TableCell align="right" >Date</TableCell>
-                  <TableCell align="right">Équipes</TableCell>
-                  <TableCell align="right">Début</TableCell>
-                  <TableCell align="right">Fin</TableCell>
-                  <TableCell align="right">Aréna</TableCell>
-                </TableRow>
-
-              </TableHead>
-              <TableBody>
-             
-               {data.filter(
-                pratiques =>(Object.keys(pratiques.equipes).filter(
-                key=>(pratiques.equipes[key].id==selEquipe||selEquipe==0)).filter(
-                  key=>(new Date(pratiques.Jour)>=aujourdhui||inclusAncien)).length>0)).map(pratiques => 
-                (
-
-                  <TableRow key={pratiques.id} >
-                    
-                    <TableCell align="right">{joursSemaine[new Date(pratiques.Jour).getDay()]}</TableCell>
-                    <TableCell align="right">{new Date(pratiques.Jour ).toLocaleDateString("fr-CA",optionsDate)}</TableCell>
-                    <TableCell align="right">
-                            {Object.keys(pratiques.equipes).map(cleEq => 
-                        (
-
-                          <span key={pratiques.equipes[cleEq].id} >
-                            {pratiques.equipes[cleEq].Nom} <br></br>
-                          </span>
-                      
-                            ))}
-
-                    </TableCell>
-                    <TableCell align="right">{pratiques.Debut.split(':')[0]+":"+pratiques.Debut.split(':')[1]}</TableCell>
-                    <TableCell align="right">{pratiques.Fin.split(':')[0]+":"+pratiques.Fin.split(':')[1]}</TableCell>
-                    <TableCell  align="right">
-                      {pratiques.arena==null?"---":pratiques.arena.Nom}
-                    </TableCell>
-                  </TableRow>
-              
-                    ))}
-              </TableBody>
-            </Table>
-            </Container>
-            </Paper>
-            }
-          
-
-        </Container>
-
-      );
-
-    }
-
-
 
 export default Pratiques;
