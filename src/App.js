@@ -137,15 +137,16 @@ function App() {
 
 
   const navStyle = {
-    position: isMobile ?'fixed':'static',
-    backgroundColor: isMobile ?theme.palette.primary.main:theme.palette.primary.main,
-    textColor: isMobile ?'':'#000000',
-    paddingTop: isMobile?'':'',
+    position: isMobile ? 'fixed' : 'static',
+    backgroundColor: theme.palette.primary.main,
+    textColor: isMobile ? '' : '#000000',
     bottom: isMobile ? 0 : '',
-    width: isMobile ? '100%' :'',
-    opacity:1,
-    zIndex:1
-  }
+    width: 'auto', // Utilisez auto au lieu de 100vw
+    minWidth: 'max-content', // Étend la largeur au contenu
+    overflowX: 'auto', // Permet de scroller horizontalement si nécessaire
+    zIndex: 1,
+  };
+  
 
   
 const styleTitre= {
@@ -177,14 +178,13 @@ color:'#000000',
           </div> 
 
         
-<Box component="span" style={mainStyle}>
-
-            <SwitchRoutes  style={bgStyle}
-             isMobile={isMobile}
-             navHeight={navHeight}
-           >
-           </SwitchRoutes>
-
+  <Box style={{ width: 'auto', minWidth: 'max-content', overflowX: 'auto' }} component="span">
+    <SwitchRoutes
+      style={bgStyle}
+      isMobile={isMobile}
+      navHeight={navHeight}
+    >
+    </SwitchRoutes>
 </Box>
        
         </ThemeProvider>
