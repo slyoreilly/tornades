@@ -56,66 +56,121 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Pratiques() {
-  const classes = useStyles();
-  const { loading, data, equipes } = useFetch();
-  const [selEquipe, setSelEquipe] = useState(0);
-  const selectRef = useRef(null);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const paperStyle = {
+    paddingTop: '1rem',
+    width: '100%',
+    minHeight: '100vh', // Assure que le Paper occupe toute la hauteur de la fenêtre
+    paddingBottom: '4rem', // Ajoute un espace en bas pour le footer
+  };
+
+  const { loadingP, loadingE, data, equipes, arenas } = useFetch();
+  const selectRef = useRef(0);
+  const [selEquipe, setSelEquipe] = useState(0);
+  const [inclusAncien, setInclusAncien] = useState(false);
 
   return (
-    <Container className={classes.container}>
-      <Paper className={classes.paper}>
-        <Typography variant="h2" gutterBottom>
-          Pratiques
-        </Typography>
-        <span>Choisir votre équipe:</span>
-        <select ref={selectRef} onChange={() => setSelEquipe(selectRef.current.value)}>
-          <option key={0} value={0}>Toutes</option>
-          {equipes.map(equipe => (
-            <option key={equipe.id} value={equipe.id}>
-              {equipe.Nom}
-            </option>
-          ))}
-        </select>
-
-        <Table className={classes.table} size="small">
-          <TableHead>
-            <TableRow>
-              <TableCell align="right">Jour</TableCell>
-              <TableCell align="right">Date</TableCell>
-              <TableCell align="right">Équipes</TableCell>
-              <TableCell align="right">Début</TableCell>
-              <TableCell align="right">Fin</TableCell>
-              <TableCell align="right">Aréna</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((pratique) => (
-              <TableRow key={pratique.id}>
-                <TableCell align="right">
-                  {joursSemaine[new Date(pratique.Jour).getDay()]}
-                </TableCell>
-                <TableCell align="right">
-                  {new Date(pratique.Jour).toLocaleDateString("fr-CA")}
-                </TableCell>
-                <TableCell align="right">
-                  {Object.values(pratique.equipes).map((equipe) => (
-                    <span key={equipe.id}>{equipe.Nom}<br/></span>
+    <Container>
+      {loadingP || loadingE ? (
+        <div>Loading...</div>
+      ) : (
+        <Paper style={paperStyle}>
+          <Container>
+            <Typography variant="h2">Pratiques</Typography>
+            <span>Choisir votre équipe:</span>
+            <select
+              ref={selectRef}
+              selected
+              onChange={() => {
+                setSelEquipe(selectRef.current.value);
+              }}
+            >
+              <option key={0} value={0}>
+                Toutes
+              </option>
+              {equipes.map((equipe) => (
+                <option key={equipe.id} value={equipe.id}>
+                  {equipe.Nom}
+                </option>
+              ))}
+            </select>
+            <br />
+            <label>
+              <input
+                type="checkbox"
+                defaultChecked={false}
+                onClick={() => setInclusAncien(!inclusAncien)}
+              />{' '}
+              Afficher les anciennes pratiques
+            </label>
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="right">Jour</TableCell>
+                  <TableCell align="right">Date</TableCell>
+                  <TableCell align="right">Équipes</TableCell>
+                  <TableCell align="right">Début</TableCell>
+                  <TableCell align="right">Fin</TableCell>
+                  <TableCell align="right">Aréna</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {data
+                  .filter(
+                    (pratiques) =>
+                      Object.keys(pratiques.equipes)
+                        .filter(
+                          (key) =>
+                            pratiques.equipes[key].id == selEquipe ||
+                            selEquipe == 0
+                        )
+                        .filter(
+                          (key) =>
+                            new Date(pratiques.Jour) >= aujourdhui ||
+                            inclusAncien
+                        ).length > 0
+                  )
+                  .map((pratiques) => (
+                    <TableRow key={pratiques.id}>
+                      <TableCell align="right">
+                        {joursSemaine[new Date(pratiques.Jour).getDay()]}
+                      </TableCell>
+                      <TableCell align="right">
+                        {new Date(pratiques.Jour).toLocaleDateString(
+                          'fr-CA',
+                          optionsDate
+                        )}
+                      </TableCell>
+                      <TableCell align="right">
+                        {Object.keys(pratiques.equipes).map((cleEq) => (
+                          <span key={pratiques.equipes[cleEq].id}>
+                            {pratiques.equipes[cleEq].Nom}
+                            <br />
+                          </span>
+                        ))}
+                      </TableCell>
+                      <TableCell align="right">
+                        {pratiques.Debut.split(':')[0] +
+                          ':' +
+                          pratiques.Debut.split(':')[1]}
+                      </TableCell>
+                      <TableCell align="right">
+                        {pratiques.Fin.split(':')[0] +
+                          ':' +
+                          pratiques.Fin.split(':')[1]}
+                      </TableCell>
+                      <TableCell align="right">
+                        {pratiques.arena == null
+                          ? '---'
+                          : pratiques.arena.Nom}
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </TableCell>
-                <TableCell align="right">{pratique.Debut}</TableCell>
-                <TableCell align="right">{pratique.Fin}</TableCell>
-                <TableCell align="right">
-                  {pratique.arena ? pratique.arena.Nom : "---"}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
+              </TableBody>
+            </Table>
+          </Container>
+        </Paper>
+      )}
     </Container>
   );
 }
