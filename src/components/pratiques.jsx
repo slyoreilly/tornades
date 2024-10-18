@@ -60,8 +60,9 @@ const useStyles = makeStyles({
 function Pratiques() {
     
     const divPrincipale= {
-      paddingTop:'1rem'
-      
+      paddingTop:'1rem',
+      width:'100%',
+      height:'100%'
       }
 
  const {loadingP,loadingE,data,equipes,arenas} = useFetch();

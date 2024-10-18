@@ -44,10 +44,10 @@ function Tournoi() {
 <Paper style={stylePaper}>
            <Typography variant="h2">Tournoi Peewee / Bantam 2023 d'AHMV</Typography>
 <p>L'édition 2023 de notre tournoi Peewee / Bantam est en cours de préparation.
-Elle se déroulera du 4 décembre au 17 décembre 2023</p>
+Elle se déroulera du 2 décembre au 15 décembre 2024</p>
 
 
-<p>Nouveauté cette année, nous incluons du M13C! C'est donc dire que nous accueillerons tous les M13 et M15 simple lettre.</p>
+<p>Nouveauté cette année, nous incluons du M15C! Cependant, par manque de temps de glace, nous ne pourrons pas acceuillir le M13C.</p>
 
 <TournoiALaRonde></TournoiALaRonde>
 
