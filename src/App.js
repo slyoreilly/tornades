@@ -150,7 +150,9 @@ function App() {
   
 const styleTitre= {
 height:isMobile?'3rem':'0',
-width:isMobile?'100%':'0',
+width:isMobile?'auto':'0',
+minWidth: 'max-content',
+overflowX:'auto',
 visibility:isMobile?'visible':'hidden',
 backgroundColor:isMobile?'#e00024':'#000000',
 color:'#000000',
