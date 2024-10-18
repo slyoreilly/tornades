@@ -21,6 +21,7 @@ const useFetch = () => {
     async function fetchData() {
       const responsePratiques = await fetch("/api/pratiques?_limit=100&_sort=Jour:DESC");
       const pratiques = await responsePratiques.json();
+      pratiques.sort(function(a,b){if(a.Jour.localeCompare(b.Jour)==0){return ( a.Debut.localeCompare(b.Debut));}else{return (a.Jour.localeCompare(b.Jour));};});
       
       const responseEquipes = await fetch("/api/equipes");
       const equipes = await responseEquipes.json();
