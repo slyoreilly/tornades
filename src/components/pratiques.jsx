@@ -69,6 +69,24 @@ function Pratiques() {
   const [selEquipe, setSelEquipe] = useState(0);
   const [inclusAncien, setInclusAncien] = useState(false);
 
+  const options = {
+    hour12 : false,
+    hour:  "2-digit",
+    minute: "2-digit"
+  }
+  
+  const optionsDate = {
+    hour12 : false,
+  }
+  
+  var heure = new Date().toLocaleTimeString("en-US",options);
+  var  maintenant= new Date();
+  var aujourdhui =maintenant;
+  aujourdhui.setHours(0);
+  aujourdhui.setMinutes(0);
+  aujourdhui.setSeconds(0);
+  aujourdhui.setMilliseconds(0);
+
   return (
     <Container>
       {loadingP || loadingE ? (
