@@ -61,8 +61,10 @@ function Pratiques() {
   const paperStyle = {
     paddingTop: '1rem',
     width: '100%',
-    minHeight: 'calc(100vh - 60px)', // Assure que le Paper occupe toute la hauteur disponible moins la hauteur du footer
-    paddingBottom: '60px', // Laisse de la place pour le footer
+    maxWidth: '1200px', // Limite la largeur maximale pour que le contenu reste lisible sur de grands écrans
+    minHeight: 'calc(100vh - 60px)', // Hauteur minimale, laissant de l'espace pour le footer
+    margin: '0 auto', // Centre le Paper horizontalement
+    paddingBottom: '60px', // Espace pour le footer
   };
 
   const { loadingP, loadingE, data, equipes, arenas } = useFetch();
