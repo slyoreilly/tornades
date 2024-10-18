@@ -130,7 +130,7 @@ function App() {
   const bgStyle = {
   
     backgroundColor:"#fffafa",
-    width:'100vw'
+    width:'min-content'
   }
 
 
